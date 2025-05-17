@@ -49,3 +49,21 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server running in ${process.env.NODE_ENV || 'development'} mode on port ${PORT}`);
 });
+
+const corsOptions = {
+    origin: function (origin, callback) {
+        // Replace 'https://your-frontend-domain.vercel.app' with your actual Vercel URL after deployment
+        // Also allow your local frontend for continued development if needed
+        const allowedOrigins = [
+            'http://localhost:3000', // Your local React dev server
+            'https://cashpay-six.vercel.app/' // Your deployed Vercel app
+        ];
+        if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
+    optionsSuccessStatus: 200
+};
+app.use(cors(corsOptions));
