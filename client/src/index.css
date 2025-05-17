@@ -1701,3 +1701,48 @@ select.standard-input {
     color: var(--bkash-dark-gray);
 }
 
+/* --- OTP Toast Notification Styles --- */
+.otp-toast-notification {
+    position: fixed;
+    top: 20px;
+    right: -400px; /* Start off-screen */
+    width: auto;
+    max-width: 350px;
+    background-color: #1aaf53; /* Green for success/info */
+    color: white;
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    z-index: 1050; /* Ensure it's on top */
+    font-size: 18px;
+    transition: right 0.5s ease-in-out; /* Slide animation */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.otp-toast-notification.slide-in-right {
+    right: 20px; /* Slide in to this position */
+}
+
+.otp-toast-notification p {
+    margin: 0;
+    margin-right: 15px; /* Space before close button */
+    word-break: break-word;
+}
+
+.otp-toast-close {
+    background: none;
+    border: none;
+    color: rgb(24, 100, 10);
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    opacity: 0.7;
+    padding: 0 5px;
+    line-height: 1;
+}
+.otp-toast-close:hover {
+    opacity: 1;
+}
+

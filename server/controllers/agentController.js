@@ -14,6 +14,66 @@ const formatMobileNumber = (num) => {
     return null;
 };
 
+// @desc    Agent requests/resends an OTP for their application or other agent actions
+// @route   POST /api/agent/send-otp
+// @access  Public
+const agentSendOtp = async (req, res) => {
+    const { mobileNumber } = req.body;
+
+    if (!mobileNumber) {
+        return res.status(400).json({ message: 'Mobile number is required.' });
+    }
+    const formattedMobile = formatMobileNumber(mobileNumber);
+    if (!formattedMobile) {
+        return res.status(400).json({ message: 'Invalid mobile number format.' });
+    }
+
+    try {
+        // Check if an agent record exists for this mobile number
+        const agent = await Agent.findOne({ mobileNumber: formattedMobile });
+
+        if (!agent) {
+            // This scenario means an OTP is requested for a number not yet in the agent application process
+            // OR the agent application process starts with /api/agent/apply which creates the record first.
+            // If /apply creates the agent record first, then this 'agent not found' should ideally not happen
+            // if send-otp is only called after /apply.
+            return res.status(404).json({ message: 'No agent application found for this mobile number. Please apply first.' });
+        }
+
+        // Check current application status
+        if (agent.applicationStatus === 'approved' && agent.pin) {
+            return res.status(400).json({ message: 'Agent account is already active and verified. OTP not needed for application.' });
+        }
+        if (agent.applicationStatus === 'pending_admin_approval') {
+            return res.status(400).json({ message: 'Your OTP is verified. Application is pending admin approval. No new OTP needed now.' });
+        }
+        if (agent.applicationStatus === 'rejected') {
+            return res.status(400).json({ message: 'Your previous application was rejected. Please start a new application if desired.' });
+        }
+        // Allow OTP send only if status is 'pending_otp_verification' (or if it's a new application where /apply calls this)
+
+        // --- OTP Generation Logic ---
+        const otpCode = Math.floor(100000 + Math.random() * 900000).toString().slice(0, 6); // 6-digit OTP
+        const expiresAt = new Date(Date.now() + 10 * 60 * 1000); // OTP valid for 10 minutes
+
+        await OTP.findOneAndUpdate(
+            { mobileNumber: formattedMobile }, // Link OTP to mobile number
+            { otpCode, expiresAt },
+            { upsert: true, new: true, setDefaultsOnInsert: true }
+        );
+        console.log(`\n--- AGENT OTP for ${formattedMobile}: ${otpCode} ---\n`);
+
+        res.json({
+            message: 'OTP sent successfully to agent mobile.',
+            prototypeOtp: otpCode // For prototype UI display
+        });
+
+    } catch (error) {
+        console.error('Agent Send OTP Error:', error);
+        res.status(500).json({ message: 'Failed to send OTP to agent. Please try again.', errorDetails: error.message });
+    }
+};
+
 // @desc    Agent applies for an account (Registration Phase 1)
 // @route   POST /api/agent/apply
 // @access  Public
@@ -75,7 +135,8 @@ const agentApply = async (req, res) => {
 
         res.status(201).json({
             message: 'Agent application submitted. Please verify your mobile number with OTP.',
-            mobileNumber: formattedMobile
+            mobileNumber: formattedMobile,
+            prototypeOtp: otpCode // Send OTP back
         });
 
     } catch (error) {
@@ -749,6 +810,7 @@ const agentPayBillForUser = async (req, res) => {
 
 module.exports = {
     agentApply,
+    agentSendOtp,
     agentVerifyOtp,
     agentSetPin,
     getAllActiveAgents,

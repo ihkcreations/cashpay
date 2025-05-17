@@ -194,7 +194,7 @@
     border-radius: 20px;
     cursor: pointer;
     font-size: 13px;
-    flex-shrink: 0; /* Prevent button from shrinking too much */
+    
 }
 .admin-otp-group .otp-input { /* For the OTP input field next to the button */
     flex-grow: 1;

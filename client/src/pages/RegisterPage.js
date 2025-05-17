@@ -5,11 +5,13 @@ import api from '../api/api'; // Use our configured axios instance
 import { useAuth } from '../context/AuthContext'; // Use auth hook to update state after login
 // Assuming your logo is in the public directory
 import logoPath from '../assets/CashPayLogo.png';
+import { useOtpDisplay } from '../context/OtpDisplayContext';
 
 
 
 function RegisterPage() {
   // State to manage the registration step (1, 2, 3, 4)
+  const { showOtpOnScreen } = useOtpDisplay();
   const [step, setStep] = useState(1);
   // State for form inputs across steps
   const [mobileNumber, setMobileNumber] = useState('');
@@ -105,6 +107,9 @@ function RegisterPage() {
        try {
            const { data } = await api.post('/auth/send-otp', { mobileNumber: targetMobile });
            setMessage(data.message);
+            if (data.prototypeOtp) { // Check if backend sent it
+                showOtpOnScreen(data.prototypeOtp, mobileNumber);
+            }
            
 
        } catch (err) {

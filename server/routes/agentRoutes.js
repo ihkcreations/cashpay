@@ -3,6 +3,7 @@ const express = require('express');
 const router = express.Router();
 const {
     agentApply,
+    agentSendOtp,
     agentVerifyOtp,
     agentSetPin,
     getAllActiveAgents,
@@ -17,6 +18,7 @@ const { protect, agentProtect } = require('../middleware/authMiddleware');
 
 // Agent Application and Onboarding
 router.post('/apply', agentApply);            // Registration Phase 1
+router.post('/send-otp', agentSendOtp);
 router.post('/verify-otp', agentVerifyOtp);  // Registration Phase 2 (OTP for application)
 router.post('/set-pin', agentSetPin);        // Login - Continuation (Set PIN after admin approval)
 

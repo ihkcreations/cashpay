@@ -4,8 +4,10 @@ import { Link, useNavigate } from 'react-router-dom';
 import api from '../../api/api'; // Correct path for api
 import '../../styles/Agent.css'
 import logoPath from '../../assets/CashPayLogo.png';
+import { useOtpDisplay } from '../../context/OtpDisplayContext';
 
 function AgentRegisterPage() {
+    const { showOtpOnScreen } = useOtpDisplay();
     const [step, setStep] = useState(1);
     // Step 1: Application Details
     const [shopName, setShopName] = useState('');
@@ -49,6 +51,9 @@ function AgentRegisterPage() {
                 const { data } = await api.post('/agent/apply', payload);
                 setMessage(data.message + " (Check server console for OTP)"); // OTP sent message
                 setMobileNumber(data.mobileNumber || mobileNumber); // Use formatted number from backend if available
+                if (data.prototypeOtp) { // Check if backend sent it
+                    showOtpOnScreen(data.prototypeOtp, `Agent App for ${data.mobileNumber || mobileNumber}`);
+                }
                 setStep(2); // Move to OTP verification
             } catch (err) {
                 setError(err.response?.data?.message || 'আবেদন জমা দিতে সমস্যা হয়েছে।');
@@ -95,8 +100,11 @@ function AgentRegisterPage() {
         try {
             // Re-use the /api/auth/send-otp endpoint, or create a specific agent one if needed
             // Assuming auth/send-otp can handle agent numbers not fully verified
-            const { data } = await api.post('/auth/send-otp', { mobileNumber });
-            setMessage(data.message + " (Check server console for new OTP)");
+            const { data } = await api.post('/agent/send-otp', { mobileNumber });
+            setMessage(data.message);
+             if (data.prototypeOtp) { // Check if backend sent it
+                showOtpOnScreen(data.prototypeOtp, mobileNumber);
+            }
         } catch (err) {
             setError(err.response?.data?.message || 'OTP পুনরায় পাঠাতে সমস্যা হয়েছে।');
         }

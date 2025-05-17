@@ -116,20 +116,41 @@ const requestAdminPasswordReset = async (req, res) => {
     if (!username) return res.status(400).json({ message: "Username is required." });
 
     try {
-        const adminUser = await Admin.findOne({ username }); // Query Admin collection
+        // Find the admin account
+        const adminUser = await Admin.findOne({ username });
         if (!adminUser) return res.status(404).json({ message: "Admin account not found." });
 
-        // In a real app, send OTP to adminUser.email (if you add email field)
-        const otpCode = Math.floor(100000 + Math.random() * 900000).toString().slice(0,6);
-        // For prototype, we log. Store in OTP collection for verification.
-        // await OTP.findOneAndUpdate({ identifier: username, type: 'admin_reset' }, { otpCode, expiresAt }, { upsert: true });
-        
-        res.json({ message: `Password reset OTP for ${username}. (Check server console)` });
+        // Check status - should they be allowed to reset password?
+        // Usually, active admins can reset. Maybe block pending/rejected?
+        if (adminUser.applicationStatus !== 'approved' && adminUser.role !== 'super_admin') {
+             return res.status(403).json({ message: 'Admin account not approved or is inactive.'});
+        }
 
-    } catch (error) { 
+
+        // --- OTP Generation & Storage ---
+        const otpCode = Math.floor(100000 + Math.random() * 900000).toString().slice(0,6); // 6-digit
+        const expiresAt = new Date(Date.now() + 10 * 60 * 1000); // 10 minutes
+
+        // Store OTP linked to admin's username or ID
+        // Using username as identifier for simplicity in OTP collection
+        await OTP.findOneAndUpdate(
+            { identifier: username, type: 'admin_reset' }, // Use username as identifier, type to distinguish
+            { otpCode, expiresAt, mobileNumber: null }, // No mobileNumber needed for admin OTP in this model
+            { upsert: true, new: true, setDefaultsOnInsert: true }
+        );
+
+        console.log(`\n--- ADMIN PASSWORD RESET OTP for ${username}: ${otpCode} ---\n`);
+
+        res.json({
+            message: `Password reset OTP sent for ${username}. (Check server console)`,
+            // For prototype UI, return OTP here:
+            prototypeOtp: otpCode
+        });
+
+    } catch (error) {
         console.error("Req Admin Pass Reset Error:", error);
         res.status(500).json({ message: "Failed to request password reset." });
-     }
+    }
 };
 
 // @desc    Admin Reset Password with OTP
@@ -137,27 +158,46 @@ const requestAdminPasswordReset = async (req, res) => {
 // @access  Public
 const resetAdminPassword = async (req, res) => {
     const { username, otpCode, newPassword } = req.body;
-    
+
     if (!username || !otpCode || !newPassword) {
         return res.status(400).json({ message: "Username, OTP, and new password are required." });
     }
     if (newPassword.length < 6) {
         return res.status(400).json({ message: 'New password must be at least 6 characters.' });
     }
-    // TODO: Actual OTP verification from OTP collection
-    
 
     try {
-        const adminUser = await Admin.findOne({ username }); // Query Admin collection
-        if (!adminUser) return res.status(404).json({ message: "Admin account not found." });
+        // 1. Find and Validate OTP
+        const otpRecord = await OTP.findOne({ identifier: username, type: 'admin_reset', otpCode: otpCode });
 
-        adminUser.password = newPassword;
-        adminUser.isActive = true; // Re-activate if they were inactive
-        adminUser.applicationStatus = 'approved'; // Ensure status is approved
+        if (!otpRecord) {
+            return res.status(400).json({ message: 'Invalid OTP.' });
+        }
+        if (otpRecord.expiresAt < new Date()) {
+            await OTP.deleteOne({ _id: otpRecord._id }); // Clean up expired OTP
+            return res.status(400).json({ message: 'OTP expired. Please request a new one.' });
+        }
+
+        // 2. Find Admin Account
+        const adminUser = await Admin.findOne({ username });
+        if (!adminUser) { // Should not happen if OTP is valid, but safety check
+            await OTP.deleteOne({ _id: otpRecord._id }); // Clean up OTP
+            return res.status(404).json({ message: "Admin account not found." });
+        }
+
+        // 3. Reset Password and Activate/Approve (as password reset implies regaining access)
+        adminUser.password = newPassword; // Password will be hashed by pre-save
+        // Assuming reset password implies full activation/approval if they weren't already
+        adminUser.isActive = true;
+        adminUser.applicationStatus = 'approved';
         await adminUser.save();
 
-        res.json({ message: "Password has been reset successfully." });
-    } catch (error) { 
+        // 4. Clean up the used OTP
+        await OTP.deleteOne({ _id: otpRecord._id });
+
+        res.json({ message: "Password has been reset successfully. You can now login." });
+
+    } catch (error) {
         console.error("Admin Reset Password Error:", error);
         res.status(500).json({ message: "Failed to reset password." });
     }

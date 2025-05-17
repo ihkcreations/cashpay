@@ -115,7 +115,10 @@ const sendOtp = async (req, res) => {
       console.log(`\n--- SIMULATED OTP for ${formattedMobile}: ${otpCode} ---`);
       console.log(`--- OTP expires at: ${expiresAt.toLocaleString()} ---\n`);
 
-      res.json({ message: 'OTP sent successfully. Please check server console for the code.' });
+       res.json({
+          message: 'OTP sent successfully.',
+          prototypeOtp: otpCode // Send OTP back
+      });
 
   } catch (error) {
       console.error('Error sending OTP:', error);

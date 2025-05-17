@@ -6,6 +6,17 @@ const otpSchema = mongoose.Schema({
     required: true,
     index: true // Index for faster lookups
   },
+  identifier: { // For admin OTPs (e.g., username) or other entities
+      type: String,
+      index: true,
+      sparse: true,
+  },
+  type: { // To distinguish OTP purpose/entity type
+      type: String,
+      required: true,
+      enum: ['user', 'agent', 'admin_reset'], // Add 'admin_reset'
+      default: 'user'
+  },
   otpCode: {
     type: String,
     required: true

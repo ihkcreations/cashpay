@@ -3,8 +3,10 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import api from '../../api/api';
 import logoPath from '../../assets/CashPayLogo.png';
+import { useOtpDisplay } from '../../context/OtpDisplayContext';
 
 function AdminPasswordResetPage() {
+    const { showOtpOnScreen } = useOtpDisplay();
     const [step, setStep] = useState(1); // 1 for request OTP, 2 for reset with OTP
     const [username, setUsername] = useState('');
     const [otpCode, setOtpCode] = useState('');
@@ -22,7 +24,10 @@ function AdminPasswordResetPage() {
         setLoading(true);
         try {
             const { data } = await api.post('/admin/auth/request-password-reset', { username });
-            setMessage(data.message + " (Check server console for OTP)");
+            setMessage(data.message);
+            if (data.prototypeOtp) { // Check if backend sent it
+                showOtpOnScreen(data.prototypeOtp);
+            }
             setStep(2); // Move to OTP and new password input
         } catch (err) {
             setError(err.response?.data?.message || 'Failed to request OTP.');

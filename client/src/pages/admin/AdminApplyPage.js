@@ -17,7 +17,7 @@ function AdminApplyPage() {
 
     // Placeholder for requesting OTP from Super Admin - In a real app, this would be a backend call
     const handleRequestOtp = () => {
-        setMessage('Super Admin OTP is "25684238" for prototype. This would normally be sent to Super Admin.');
+        setMessage('Super Admin OTP is "25684238');
         // In a real scenario, you might call an API here:
         // api.post('/admin/request-super-otp').then(...).catch(...);
     };

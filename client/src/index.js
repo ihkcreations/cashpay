@@ -5,6 +5,7 @@ import { BrowserRouter as Router } from 'react-router-dom'; // Import BrowserRou
 import './index.css';
 import App from './App';
 import { AuthProvider } from './context/AuthContext'; // Import AuthProvider
+import { OtpDisplayProvider } from './context/OtpDisplayContext';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -14,7 +15,9 @@ root.render(
     <Router>
       {/* Now AuthProvider and App are inside the Router context */}
       <AuthProvider>
-        <App />
+        <OtpDisplayProvider> {/* Wrap App with OtpDisplayProvider */}
+          <App />
+        </OtpDisplayProvider>
       </AuthProvider>
     </Router>
   </React.StrictMode>

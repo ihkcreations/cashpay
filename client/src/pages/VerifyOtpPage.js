@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../api/api'; // Use our configured axios instance
 import { useAuth } from '../context/AuthContext'; // Use auth hook to update state after verification
+import { useOtpDisplay } from '../context/OtpDisplayContext';
 
 function VerifyOtpPage() {
   const [otpCode, setOtpCode] = useState('');
@@ -11,6 +12,7 @@ function VerifyOtpPage() {
   const [message, setMessage] = useState('');
   const navigate = useNavigate();
   const { updateUser } = useAuth(); // Use updateUser from AuthContext
+  const { showOtpOnScreen } = useOtpDisplay();
 
   // Fetch mobile number from local storage when the component mounts
   useEffect(() => {
@@ -44,6 +46,9 @@ function VerifyOtpPage() {
            const { data } = await api.post('/auth/send-otp', { mobileNumber });
            setMessage(data.message);
            // Note: For prototype, check server console for the new OTP
+           if (data.prototypeOtp) { // Check if backend sent it
+                showOtpOnScreen(data.prototypeOtp, mobileNumber);
+            }
        } catch (err) {
            const errorMessage = err.response && err.response.data && err.response.data.message
                            ? err.response.data.message
