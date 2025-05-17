@@ -1,0 +1,534 @@
+/* AGENT */
+/* Prototype text for dark backgrounds */
+
+
+/* The direct child div inside .app-root-container.agent-theme */
+/* This sets the default content area background for agent pages */
+
+.prototype-text.dark-bg-text {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+
+.agent-back-button{
+    position: absolute;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    color: var(--agent-dark-blue);
+    font-size: 35px;
+    text-decoration: none; /* Remove underline */
+    transition: opacity 0.2s ease;
+}
+
+.agent-theme-amount .amount-value{
+    color: var(--agent-dark-blue);
+}
+
+.agent-back-button:hover {
+    opacity: 0.8; /* Slightly transparent on hover */
+}
+
+/* Styles for Agent Welcome Page */
+.agent-welcome-container {
+    display: flex; /* Use flexbox for vertical layout */
+    flex-direction: column;
+    /*min-height: calc(100vh - 40px);  Full height minus margin */
+    border-radius: 10px; /* More rounded corners for the frame */
+    overflow: hidden; /* Hide content overflow from rounded corners */
+    background-color: var(--bkash-dark-green); /* Background for the border area */
+    
+    box-sizing: border-box; /* Include padding and border in element's total width */
+    padding: 0; /* Remove default padding */
+}
+
+.agent-welcome-top {
+    background-color: var(--agent-primary-blue); /* Primary blue background */
+    color: var(--agent-text-on-dark);
+    padding: 40px 20px 30px 20px;
+    text-align: center;
+    position: relative;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.agent-welcome-top .welcome-logo { /* Can reuse .welcome-logo if size is same */
+    width: 100px;
+    margin-bottom: 20px;
+}
+.agent-welcome-heading {
+    font-size: 36px;
+    margin: 0 0 10px 0;
+    font-weight: bold;
+}
+.agent-welcome-subheading {
+    font-size: 18px;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.agent-welcome-bottom {
+    background-color: white; /* White background for bottom section */
+    padding: 30px 20px 40px 20px;
+    text-align: center;
+    /* No top radius needed if top section has bottom radius that matches main frame */
+}
+.agent-welcome-cta {
+    font-size: 16px;
+    color: var(--bkash-dark-gray); /* Or agent-dark-blue */
+    margin: 0 0 25px 0;
+    line-height: 1.5;
+}
+
+/* Agent Buttons (can be reused across agent pages) */
+.agent-button {
+    display: block;
+    width: 60%; /* Full width */
+    margin: 0 auto 5px auto; /* Center the button */
+    padding: 10px; /* Padding for button */
+    border-radius: 25px;
+    font-weight: bold;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+.agent-button.primary-button {
+    background-color: var(--agent-primary-blue);
+    color: var(--agent-text-on-dark);
+    border: 2px solid var(--agent-primary-blue);
+}
+.agent-button.primary-button:hover {
+    background-color: var(--agent-dark-blue);
+    border-color: var(--agent-dark-blue);
+}
+.agent-button.secondary-button {
+    background-color: transparent;
+    color: var(--agent-primary-blue);
+    border: 2px solid var(--agent-primary-blue);
+}
+.agent-button.secondary-button:hover {
+    background-color: var(--agent-light-blue-bg);
+}
+
+.back-to-user-link {
+    display: block;
+    margin-top: 20px;
+    color: var(--agent-primary-blue);
+    font-size: 14px;
+}
+
+/* --- General Agent Page Layout (similar to feature-page-layout but themed) --- */
+.agent-page-layout {
+    display: flex;
+    flex-direction: column;
+    
+                       /* (its parent is the div inside .app-root-container) */
+    background-color: white; /* White background for the login area */
+    padding: 0;
+    border-radius: 20px; /* Should match app-root-container's radius if it's the direct content */
+    overflow: hidden; /* To respect the border-radius with the bottom bar */
+    flex-grow: 1; /* Added: Allow this layout to grow within its flex parent */
+}
+.agent-page-top-section { /* Header for agent inner pages */
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: white; /* Or agent-light-blue-bg */
+    border-bottom: 1px solid #eee; /* Separator */
+    border-radius: 20px;
+}
+.agent-page-top-section .back-button { /* Reuse .back-button style */
+    color: var(--agent-primary-blue); /* Blue back arrow */
+}
+.agent-page-top-section .feature-page-logo { /* Reuse .feature-page-logo for consistency */
+    margin-left: 45px;
+    margin-right: auto;
+    width: 80px;
+}
+.agent-page-top-section .feature-page-heading { /* Reuse .feature-page-heading */
+    color: var(--agent-primary-blue); /* Blue heading */
+}
+
+.agent-page-content {
+    flex-grow: 1;
+    padding: 20px;
+    background-color: white;
+    overflow-y: auto;
+}
+.agent-page-content .input-group label {
+    color: var(--agent-dark-blue); /* Darker blue for labels */
+}
+.agent-page-content .standard-input:focus { /* Reuse .standard-input */
+    border-color: var(--agent-primary-blue);
+    box-shadow: 0 0 0 2px rgba(63, 81, 181, 0.2); /* Blue focus ring */
+}
+
+
+.agent-page-bottom-section { /* For the "Next" button */
+    padding: 20px;
+    background-color: var(--agent-primary-blue); /* Blue background for button bar */
+    text-align: center;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    /* margin-top: auto; Push to bottom if content is short */
+}
+.agent-page-next-button { /* Button style for agent flow */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 12px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 30px;
+    background-color: white; /* White button on blue background */
+    color: var(--agent-primary-blue); /* Blue text */
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+.agent-page-next-button:hover:not(:disabled) {
+    background-color: var(--agent-light-blue-bg); /* Light blue hover */
+}
+.agent-page-next-button:disabled {
+    background-color: #c5cae9; /* Muted blue for disabled */
+    color: #7986cb;
+    cursor: not-allowed;
+}
+.agent-page-next-button .button-arrow {
+    color: var(--agent-primary-blue); /* Ensure arrow matches text color */
+}
+
+
+.confirm-hold-button:hover{
+    background-color: var(--agent-light-blue-bg) !important;
+}
+
+/* Agent PIN input style */
+.agent-pin-input.large-dots {
+    font-size: 24px;
+    letter-spacing: 10px;
+    padding: 15px;
+    width: 100%;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 8px; /* Slightly more rounded for PIN fields perhaps */
+    box-sizing: border-box;
+    margin-bottom: 20px;
+}
+.agent-pin-input.large-dots::placeholder {
+    color: #bdbdbd; /* Lighter placeholder */
+}
+
+.agent-step-heading {
+    font-size: 20px;
+    color: var(--agent-dark-blue); /* Darker blue for emphasis */
+    margin: 10px 0 25px 0;
+    line-height: 1.4;
+}
+.agent-step-heading.centered {
+    text-align: center;
+}
+.step-instruction.centered-text {
+    text-align: center;
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 20px;
+}
+.logged-in-number.centered-text {
+    text-align: center;
+    font-size: 18px;
+    color: var(--agent-dark-blue);
+    margin-top: -15px;
+    margin-bottom: 20px;
+}
+
+
+/* Agent Registration - OTP screen specific */
+.agent-otp-input .otp-input {
+    /* Style for the 6-digit OTP input if different */
+    width: auto; /* Allow to grow with content or set fixed width */
+    letter-spacing: 3px; /* Adjust for 6 digits */
+    padding: 10px 15px;
+}
+.agent-otp-input .resend-otp-button {
+    color: var(--agent-primary-blue);
+}
+.agent-otp-input .resend-otp-button:hover:not(:disabled) {
+    color: var(--agent-dark-blue);
+}
+
+/* Agent Registration - Pending Approval Screen */
+.pending-approval-screen {
+    text-align: center;
+    padding-top: 40px; /* More space from top */
+}
+.pending-approval-message {
+    font-size: 16px;
+    color: var(--bkash-dark-gray); /* Or agent-dark-blue */
+    line-height: 1.6;
+    margin-top: 15px;
+}
+
+/* General Error/Success messages if not already styled globally */
+.error-message.global-error {
+    color: red;
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+.success-message.global-success {
+    color: green;
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+/* --- Agent Dashboard Specific Styles --- */
+.agent-dashboard-layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    border-radius: 20px;
+    background-color: var(--agent-light-blue-bg); /* Light blue overall background */
+
+}
+
+/* Agent Profile Section - Uses primary blue */
+.agent-dashboard-profile-section {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    background-color: var(--agent-primary-blue); /* Primary blue */
+    color: var(--agent-text-on-dark); /* White text */
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    margin-bottom: 15px;
+}
+.agent-dashboard-profile-section .profile-avatar.agent-avatar {
+    background-color: white; /* White circle */
+    color: var(--agent-primary-blue); /* Blue icon */
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    margin-right: 15px;
+}
+.agent-dashboard-profile-section .profile-info .profile-name.agent-name {
+    color: var(--agent-text-on-dark); /* White text for name */
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+.agent-dashboard-profile-section .balance-display-area.agent-balance-area {
+    background-color: rgba(255, 255, 255, 0.2); /* Lighter, more transparent white */
+    border-radius: 20px;
+    padding: 5px 10px;
+    font-size: 14px;
+    cursor: pointer;
+}
+.agent-dashboard-profile-section .balance-label.agent-balance-label {
+    color: var(--agent-text-on-dark);
+    font-weight: bold;
+    margin-right: 5px;
+}
+.agent-dashboard-profile-section .toggle-balance-button.agent-toggle-balance {
+    color: var(--agent-text-on-dark); /* White text for button */
+    background: none;
+    border: none;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 0;
+}
+.agent-dashboard-profile-section .toggle-balance-button.agent-toggle-balance:hover {
+    text-decoration: underline;
+}
+.agent-dashboard-profile-section .notification-icon.agent-notification {
+    font-size: 24px;
+    color: var(--agent-text-on-dark); /* White notification icon */
+    margin-left: 15px;
+}
+
+/* Agent Feature Grid - White background for items */
+.agent-dashboard-features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Or fixed 3 columns */
+    /* grid-template-columns: repeat(3, 1fr); */
+    gap: 10px;
+    padding: 0 15px 15px 15px;
+    /* No specific background here, items will have their own */
+    margin-bottom: 60px;
+}
+
+.agent-feature-item { /* Can reuse .feature-item structure and theme it */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: var(--agent-dark-blue); /* Dark blue text for features */
+    padding: 15px 10px;
+    border: 1px solid #d1d9ff; /* Lighter blue border */
+    border-radius: 8px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+    font-size: 14px;
+    background-color: white; /* White background for each item */
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+.agent-feature-item:hover {
+    background-color: #f9f9f9; /* Light blue hover */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transform: translateY(-3px);
+}
+.agent-feature-item.disabled { /* Reuse .disabled class */
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+.agent-feature-icon { /* Reuse .feature-icon structure */
+    width: 40px;
+    height: 40px;
+    background-color: var(--agent-light-blue-bg); /* Light blue for icon background */
+    border-radius: 50%;
+    margin-bottom: 8px;
+    display: flex; justify-content: center; align-items: center;
+    font-size: 24px;
+    color: var(--agent-primary-blue); /* Primary blue for icon placeholder */
+}
+.agent-feature-text { /* Reuse .feature-text structure */
+    text-align: center;
+    line-height: 1.2;
+    color: var(--agent-dark-blue);
+}
+
+/* Agent Promotional Section - Primary blue background */
+.agent-dashboard-promo-section {
+    padding: 20px 15px;
+    background-color: var(--agent-primary-blue); /* Primary blue */
+    text-align: center;
+    margin: 0 15px 15px 15px;
+    border-radius: 8px;
+    color: var(--agent-text-on-dark); /* White text */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.agent-dashboard-promo-section .promo-content {
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+.agent-dashboard-promo-section .promo-dots .dot.agent-dot { /* Style for agent dots */
+    background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent white */
+}
+.agent-dashboard-promo-section .promo-dots .dot.agent-dot.active {
+    background-color: white; /* Solid white for active */
+}
+
+/* Agent Bottom Navigation Bar - Lighter background */
+.agent-dashboard-bottom-nav { /* Can reuse .dashboard-bottom-nav structure */
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    padding: 10px 0;
+    background-color: #f0f2f5; /* Very light gray or off-white */
+    border-top: 1px solid #dde1e6; /* Slightly darker border */
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    
+
+}
+.agent-nav-item { /* Reuse .nav-item structure */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #5f6368; /* Medium gray for inactive icons/text */
+    font-size: 12px;
+    padding: 5px;
+    flex-grow: 1;
+    text-align: center;
+}
+.agent-nav-item.active { /* Active item in agent nav */
+    color: var(--agent-primary-blue); /* Primary blue for active */
+}
+.agent-nav-icon { /* Reuse .nav-icon structure */
+    font-size: 24px;
+    margin-bottom: 3px;
+}
+.agent-nav-item.logout-button {
+    color: #5f6368;
+}
+.agent-nav-item.logout-button:hover {
+    color: var(--agent-primary-blue);
+}
+
+.agent-statement-page .agent-page-content {
+    padding-top: 10px;
+}
+
+.statement-list.agent-statement-list { /* Specific for agent if needed */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.agent-statement-list .statement-item {
+    padding: 12px 0;
+    border-bottom: 1px solid #dde1e6; /* Agent theme separator */
+}
+.agent-statement-list .statement-item:last-child {
+    border-bottom: none;
+}
+
+.agent-statement-list .statement-item-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 4px;
+}
+
+.agent-statement-list .statement-narration {
+    font-size: 15px;
+    color: var(--agent-dark-blue); /* Agent theme text */
+    font-weight: 500;
+    flex-grow: 1;
+    margin-right: 10px;
+    line-height: 1.4;
+}
+
+.agent-statement-list .statement-amount {
+    font-size: 15px;
+    font-weight: bold;
+    white-space: nowrap;
+    /* Color is set inline based on credit/debit */
+}
+
+.agent-statement-list .statement-item-sub {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: #607d8b; /* Agent theme subtext color */
+}
+
+.agent-statement-list .statement-item-fee {
+    font-size: 11px;
+    color: #78909c; /* Agent theme fee color */
+    text-align: right;
+    margin-top: 2px;
+}
+
+/* Pagination (if reusing admin style, ensure it's themed for agent) */
+.admin-pagination-controls button {
+    background-color: var(--agent-primary-blue);
+    color: white;
+}
+.admin-pagination-controls button:disabled {
+    background-color: #9fa8da; /* Muted agent blue */
+}
+.admin-pagination-controls span {
+    color: var(--agent-dark-blue);
+}

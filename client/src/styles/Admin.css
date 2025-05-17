@@ -1,0 +1,947 @@
+/* Admin Auth Page Layout (Welcome/Login, Apply, Reset) - copy from Step 167 */
+
+
+/* height: '100%', display: 'flex', flexDirection: 'column', flexGrow: 1, width: '100%' */
+
+:root{
+    --admin-main : #A2E772;
+    --admin-main2: #61942E;
+    --admin-main3: #fff;
+    --admin-main4: #E8F0E2;
+    --admin-main-bg: #404740;
+    --admin-grayed-text: #AEAEAE;
+    --admin-hover-color: #74B348;
+    --admin-custom-font: 'Poppins', sans-serif;
+    --admin-page-width: 1370px;
+}
+
+.admin-custom-font {
+    font-family: var(--admin-custom-font);
+}
+
+.admin-auth-page {
+    display: flex;
+    width: var(--admin-page-width);
+    min-height: 100%;
+    align-content: center;
+    justify-content: center;
+    /* No specific background here, it takes from the parent or sets its own sections */
+}
+.admin-auth-sidebar {
+    flex-basis: 35%; /* Adjust width */
+    max-width: 250px; /* Max width for sidebar */
+    background-color: var(--admin-main2); /* Sidebar color from screenshot */
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    text-align: center;
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+    /* No border radius, as the main admin frame might be square */
+}
+.admin-auth-form-container {
+    flex-basis: 65%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+    background-color: var(--admin-main4); /* White area for the form card */
+}
+.admin-auth-form-card {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--admin-main3);
+    padding: 30px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 400px; /* Max width for the form card */
+    height: 500px;
+    justify-content: center;
+}
+/* ... (rest of .admin-auth-logo, .admin-auth-welcome-title, etc. styles from Step 167) ... */
+/* ... (rest of .admin-form-title, .admin-input-group, .admin-input, .admin-submit-button etc. from Step 167) ... */
+
+.admin-auth-logo{
+    width: 120px;
+}
+
+.admin-form-title {
+    font-size: 24px;
+    color: var(--bkash-dark-green);
+    text-align: center;
+    margin-bottom: 5px;
+}
+.admin-form-subtitle {
+    font-size: 14px;
+    color: #777;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.admin-input-group {
+    margin-bottom: 20px;
+}
+.admin-input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 25px; /* Highly rounded inputs */
+    box-sizing: border-box;
+    font-size: 15px;
+}
+.admin-input::placeholder {
+    color: #aaa;
+}
+.admin-input:focus {
+    border-color: var(--bkash-light-green);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(156, 211, 110, 0.3);
+}
+
+.admin-submit-button {
+    width: 100%;
+    background-color: var(--admin-main2); /* Dark green button */
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+.admin-submit-button:hover:not(:disabled) {
+    background-color: #25301c; /* Darker shade */
+}
+.admin-submit-button:disabled {
+    background-color: #a5b19c;
+    cursor: not-allowed;
+}
+
+.admin-form-footer {
+    text-align: center;
+    margin-top: 20px;
+}
+.admin-forgot-password-link {
+    color: var(--bkash-dark-green);
+    font-size: 14px;
+    text-decoration: none;
+}
+.admin-forgot-password-link:hover {
+    text-decoration: underline;
+}
+
+.admin-error-message {
+    color: #d9534f; /* Red for errors */
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+.admin-success-message {
+    color: #5cb85c; /* Green for success */
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.admin-auth-welcome-title {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+.admin-auth-welcome-subtitle {
+    font-size: 16px;
+    margin-bottom: 30px;
+}
+.admin-auth-divider {
+    width: 80%;
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    margin-bottom: 20px;
+}
+.admin-auth-apply-prompt {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+.admin-auth-apply-button {
+    background-color: var(--bkash-light-green); /* Lighter green button */
+    color: var(--bkash-dark-green);
+    padding: 10px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.2s ease;
+}
+.admin-auth-apply-button:hover {
+    background-color: #8cc05f; /* Darker shade of light green */
+}
+
+/* Styles for Admin Apply OTP Group */
+.admin-otp-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.admin-request-otp-button {
+    background-color: var(--bkash-dark-green);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 13px;
+    flex-shrink: 0; /* Prevent button from shrinking too much */
+}
+.admin-otp-group .otp-input { /* For the OTP input field next to the button */
+    flex-grow: 1;
+    border-radius: 20px; /* Match button radius */
+}
+
+
+
+/* --- Admin Dashboard Layout (Phase 3 screenshot) --- */
+.admin-dashboard-layout {
+    display: flex; /* Sidebar and main content side-by-side */
+    width: var(--admin-page-width);
+    height: 100%; /* Fill the .app-root-container.admin-view */
+    background-color: #f4f6f9; /* Overall light background for dashboard content area */
+    border-radius: 12px;
+}
+
+/* Admin Sidebar */
+.admin-sidebar {
+    flex: 0 0 260px; /* Fixed width for sidebar */
+    background-color: var(--admin-main2); /* Green sidebar */
+    color: #e0e0e0; /* Light text color for sidebar items */
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+}
+.admin-sidebar-logo {
+    padding: 15px 25px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.admin-sidebar-logo h2 {
+    color: white;
+    font-size: 24px;
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+.admin-sidebar-logo h2::before { /* For the C Pay logo */
+    content: ''; /* Add your logo as background-image or SVG here */
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background-image: url('../assets/CashPayLogo.png'); /* Assuming logo.png is in public */
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-right: 10px;
+}
+
+.admin-sidebar-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.admin-sidebar-nav li a {
+    display: flex; /* Use flex for icon and text alignment */
+    align-items: center;
+    padding: 12px 25px;
+    text-decoration: none;
+    color: #e0e0e0; /* Light text */
+    font-size: 15px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+.admin-sidebar-nav li a:hover,
+.admin-sidebar-nav li.active a {
+    background-color: var(--admin-hover-color); /* Darker green for hover/active */
+    color: white;
+    border-left: 3px solid var(--bkash-light-green); /* Accent line for active */
+    padding-left: 22px; /* Adjust padding for border */
+}
+.admin-sidebar-nav li a::before { /* Placeholder for icons */
+    margin-right: 12px;
+    font-size: 14px; /* Adjust icon size */
+}
+/* Specific icons (using pseudo-elements for demo, use <i> or <svg> in real app) */
+/* use assets from the folder admin inside assets */
+
+.admin-sidebar-icon{
+    width: 20px;
+    margin-right: 15px;
+}
+
+
+.admin-sidebar-logout {
+    margin-top: auto; /* Push logout to the bottom */
+    padding: 20px 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.admin-sidebar-logout button {
+    width: 100%;
+    padding: 10px;
+    background-color: var(--admin-main2); /* Light green button */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.admin-sidebar-logout button:hover{
+    background-color: var(--admin-hover-color);
+}
+
+.admin-sidebar-logout-icon{
+    width: 20px;
+    margin-right: 15px;
+}
+
+
+/* Admin Main Content Area */
+.admin-main-content {
+    flex-grow: 1; /* Take remaining width */
+    padding: 0; /* No padding here, topbar and widgets will handle their own */
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto; /* Allow content to scroll if it overflows */
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+/* Admin Top Bar */
+.admin-topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 25px;
+    background-color: white; /* White top bar */
+    border-bottom: 1px solid #e0e0e0;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+.admin-topbar-user {
+    display: flex;
+    align-items: center;
+}
+.admin-user-avatar {
+    width: 36px;
+    height: 36px;
+    background-color: var(--bkash-light-green); /* Placeholder avatar color */
+    border-radius: 50%;
+    margin-right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--admin-main2);
+    font-weight: bold;
+}
+.admin-user-name {
+    font-weight: 500;
+    font-size: 20px;
+    color: var(--admin-main2);
+}
+.admin-topbar-actions {
+    display: flex;
+    align-items: center;
+}
+.admin-search-bar {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    margin-right: 15px;
+    font-size: 14px;
+    width: 200px; /* Adjust as needed */
+}
+.admin-settings-button {
+    background: none;
+    border: none;
+    font-size: 22px; /* Settings icon size */
+    color: #555;
+    cursor: pointer;
+    padding: 5px;
+}
+.admin-settings-button::before {
+    content: '⚙️'; /* Settings icon */
+}
+
+/* Admin Dashboard Widgets Area */
+.admin-dashboard-widgets {
+    padding: 30px; /* More padding */
+    flex-grow: 1;
+    display: grid;
+    gap: 25px; /* More gap */
+    /* Adjust columns for the new layout, 4 summary cards on top */
+    grid-template-columns: repeat(4, 1fr); /* For the summary cards */
+    /* Auto-rows for content below */
+    grid-auto-rows: min-content;
+}
+
+/* Styling for individual summary cards (Users, Agents, etc.) */
+.summary-card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+    text-align: left;
+}
+.summary-card .count {
+    font-size: 36px;
+    font-weight: bold;
+    color: var(--bkash-dark-green); /* Or specific color per card */
+    margin-bottom: 5px;
+}
+.summary-card .title {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+.summary-card .manage-link {
+    font-size: 13px;
+    color: var(--bkash-light-green);
+    text-decoration: none;
+    font-weight: 500;
+}
+.summary-card .manage-link:hover {
+    text-decoration: underline;
+}
+
+/* Specific colors for card titles if needed */
+.summary-card.users .count { color: #3f51b5; } /* Example */
+.summary-card.agents .count { color: #009688; } /* Example */
+.summary-card.merchants .count { color: #ff9800; } /* Example */
+.summary-card.admins .count { color: #607d8b; } /* Example */
+
+
+/* Styling for Transaction Summary / Invest-Loan / Recent Activity cards */
+.data-card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+}
+
+/* Spanning data cards based on screenshot */
+.transactions-summary-card { grid-column: span 2 / span 2; }
+.recent-activity-card { grid-column: span 2 / span 2; }
+.invest-loan-card { grid-column: span 4 / span 4; }
+
+
+.data-card-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+.data-card .data-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 18px; /* More gap */
+}
+.data-card .data-item .label {
+    font-size: 13px;
+    color: #777;
+}
+.data-card .data-item .value {
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--bkash-dark-green); /* Or specific color */
+}
+.data-card .data-item .value.small {
+    font-size: 16p
+    x;
+}
+
+
+/* Recent Activity List */
+.recent-activity-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.recent-activity-list li {
+    padding: 12px 0;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+}
+.recent-activity-list li:last-child {
+    border-bottom: none;
+}
+.recent-activity-list .activity-text {
+    color: #555;
+}
+.recent-activity-list .activity-time {
+    font-size: 12px;
+    color: #888;
+    white-space: nowrap;
+    margin-left: 10px;
+}
+
+/* For Invest/Loan card */
+.invest-loan-grid {
+    display: flex;
+    justify-content: space-around; /* Or space-between */
+    gap: 20px;
+}
+.invest-loan-grid .data-item {
+    text-align: center;
+}
+
+.admin-page-content-area {
+    padding: 30px;
+    flex-grow: 1; /* Allow this area to take remaining space */
+    overflow-y: auto; /* Allow content within this area to scroll */
+    background-color: #f4f6f9; /* Match overall dashboard bg */
+}
+
+/* Styles for widgets (these are inside AdminDashboardWidgetsPlaceholder.js) */
+.admin-dashboard-widgets {
+    display: grid;
+    gap: 25px;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: min-content;
+}
+
+.admin-page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e0e0e0;
+}
+.admin-page-header h1 {
+    font-size: 22px;
+    color: #333;
+    margin: 0;
+}
+.admin-page-actions {
+    display: flex;
+    gap: 15px;
+}
+.admin-search-bar.page-search { /* Specific style for search within page */
+    width: 280px; /* Adjust */
+    background-color: white;
+}
+.admin-add-button, .admin-back-button {
+    background-color: var(--bkash-dark-green);
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    border: none;
+    cursor: pointer;
+}
+.admin-add-button:hover, .admin-back-button:hover {
+    background-color: #25301c;
+}
+
+/* Layout for User List and Details Panel */
+.admin-users-layout-grid {
+    display: flex;
+    gap: 25px;
+}
+.admin-users-list-container {
+    flex: 2; /* List takes more space */
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+.admin-user-details-panel {
+    flex: 1; /* Details panel takes less space */
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    max-height: calc(100vh - 200px); /* Example max height */
+    overflow-y: auto;
+}
+
+.admin-table-wrapper {
+    overflow-x: auto; /* For smaller screens if table is wide */
+}
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+.admin-table th, .admin-table td {
+    padding: 10px 12px;
+    text-align: left;
+    border-bottom: 1px solid #f0f0f0;
+}
+.admin-table th {
+    background-color: #f9fafb;
+    color: #555;
+    font-weight: 600;
+    /* Add up/down arrow placeholders for sort */
+}
+.admin-table tbody tr {
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+}
+.admin-table tbody tr:hover {
+    background-color: #f7f9fc;
+}
+.admin-table tbody tr.selected-row {
+    background-color: var(--agent-light-blue-bg); /* Light blue for selected row */
+    font-weight: 500;
+}
+.status-badge {
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 500;
+}
+.status-badge.status-verified {
+    background-color: #dcfce7; /* Light green */
+    color: #166534; /* Darker green text */
+}
+.status-badge.status-pending {
+    background-color: #fffbeb; /* Light yellow */
+    color: #b45309; /* Darker yellow/orange text */
+}
+.action-buttons button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px; /* Icon size */
+    padding: 5px;
+    margin-right: 5px;
+    color: #777;
+}
+.action-buttons button:hover { color: var(--bkash-dark-green); }
+.action-buttons .delete-btn:hover { color: #ef4444; }
+
+
+/* User Details Panel */
+.details-header h3 {
+    font-size: 18px;
+    color: var(--bkash-dark-green);
+    margin: 0 0 15px 0;
+}
+.details-body p {
+    font-size: 14px;
+    margin-bottom: 8px;
+    color: #444;
+}
+.details-body p strong {
+    color: #333;
+    min-width: 80px; /* Align labels */
+    display: inline-block;
+}
+.no-selection-message {
+    text-align: center;
+    color: #777;
+    padding-top: 50px;
+}
+.details-actions {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+}
+.admin-delete-button-detail {
+    background-color: #ef4444; /* Red delete button */
+    color: white;
+    /* ... other button styles ... */
+    padding: 8px 15px;
+    border:none; border-radius: 5px; cursor: pointer;
+}
+.admin-delete-button-detail:hover { background-color: #dc2626; }
+
+
+/* Add New User Form Page */
+.admin-add-user-page .admin-form-card.wider-card {
+    max-width: 600px; /* Wider card for this form */
+    margin: 20px auto; /* Center it if page content area is larger */
+}
+.admin-add-user-page .admin-submit-button.main-action {
+    /* Styles if different from generic admin-submit-button */
+}
+.admin-error-message.main-error, .admin-success-message.main-success {
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+.admin-error-message.main-error { background-color: #fee2e2; color: #b91c1c; }
+.admin-success-message.main-success { background-color: #dcfce7; color: #166534; }
+
+
+
+/* Reusable class for manage entity pages */
+.admin-manage-entities-page {
+    /* Common styles for /admin/dashboard/users, /admin/dashboard/agents etc. */
+}
+.admin-entities-layout-grid { /* Renamed from admin-users-layout-grid for generic use */
+    display: flex;
+    gap: 25px;
+}
+.admin-list-container { /* Renamed from admin-users-list-container */
+    flex: 4;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+.admin-entity-details-panel { /* Renamed from admin-user-details-panel */
+    flex: 1;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    max-height: calc(100vh - 220px); /* Adjust based on topbar/header height */
+    overflow-y: auto;
+}
+
+/* Filter dropdown */
+.admin-filter-select {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    background-color: white;
+}
+
+
+/* Specific status badges for agent application status if different */
+.status-badge.status-pending-admin-approval { background-color: #fef3c7; color: #92400e; }
+.status-badge.status-approved { background-color: #dcfce7; color: #166534; }
+.status-badge.status-rejected { background-color: #fee2e2; color: #991b1b; }
+.status-badge.status-pending-otp-verification { background-color: #e0e7ff; color: #3730a3; }
+
+.status-badge.status-active { background-color: #dcfce7; color: #166534; }
+.status-badge.status-inactive { background-color: #f3f4f6; color: #4b5563; }
+
+
+/* Action buttons in table and details panel */
+.action-btn.approve-btn { color: #22c55e; } /* Green */
+.action-btn.approve-btn:hover { color: #16a34a; }
+.action-btn.reject-btn { color: #ef4444; }  /* Red */
+.action-btn.reject-btn:hover { color: #dc2626; }
+.action-btn.activate-btn { color: #3b82f6; } /* Blue */
+.action-btn.activate-btn:hover { color: #2563eb; }
+.action-btn.deactivate-btn { color: #f97316; } /* Orange */
+.action-btn.deactivate-btn:hover { color: #ea580c; }
+
+.details-actions .admin-action-button { /* General style for buttons in details panel */
+    padding: 8px 12px;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-weight: 500;
+    margin-right: 10px;
+    font-size: 13px;
+}
+.details-actions .admin-action-button.approve { background-color: #22c55e; }
+.details-actions .admin-action-button.approve:hover { background-color: #16a34a; }
+.details-actions .admin-action-button.reject { background-color: #ef4444; }
+.details-actions .admin-action-button.reject:hover { background-color: #dc2626; }
+.details-actions .admin-action-button.activate { background-color: #3b82f6; }
+.details-actions .admin-action-button.activate:hover { background-color: #2563eb; }
+.details-actions .admin-action-button.deactivate { background-color: #f97316; }
+.details-actions .admin-action-button.deactivate:hover { background-color: #ea580c; }
+.details-actions .admin-action-button.delete:hover { background-color: #ea580c; }
+.details-actions .admin-action-button.delete { background-color: #f97316; }
+
+/* Add New Agent/User Page (if sharing class .admin-add-entity-page) */
+.admin-add-entity-page .admin-form-card.wider-card {
+    /* Styles are mostly fine from user add page */
+}
+
+.contact-avatar.merchant-avatar::before { content: '🛍️'; } /* From previous step */
+.contact-avatar.agent-avatar::before { content: '🏢'; } /* For agent list items if needed */
+
+/* Modal Styles for Reset Password */
+.admin-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000; /* Ensure it's on top */
+}
+
+.admin-modal-content {
+    background-color: white;
+    padding: 25px 30px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    width: 100%;
+    max-width: 450px; /* Modal width */
+    text-align: left;
+}
+.admin-modal-content h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 18px;
+    color: var(--bkash-dark-green);
+}
+.admin-modal-actions {
+    margin-top: 25px;
+    display: flex;
+    justify-content: flex-end; /* Align buttons to the right */
+    gap: 10px;
+}
+.admin-modal-actions .admin-submit-button,
+.admin-modal-actions .admin-cancel-button {
+    width: auto; /* Allow buttons to size to content */
+    padding: 8px 20px;
+    font-size: 14px;
+}
+.admin-modal-actions .admin-cancel-button {
+    background-color: #6c757d; /* Gray cancel button */
+}
+.admin-modal-actions .admin-cancel-button:hover {
+    background-color: #5a6268;
+}
+
+/* Details panel action button specific for reset password */
+.details-actions .admin-action-button.reset-pass-btn {
+    background-color: #ffc107; /* Yellow/Amber for reset */
+    color: #212529;
+}
+.details-actions .admin-action-button.reset-pass-btn:hover {
+    background-color: #e0a800;
+}
+
+/* Status badge refinements */
+.status-badge.status-pending-super-admin-approval {
+    background-color: #fff3cd; /* Light yellow for pending admin approval */
+    color: #856404;
+}
+
+/* Wider card for add forms if needed */
+.admin-form-card.wider-card {
+    max-width: 550px; /* Or adjust as needed */
+    margin: 20px auto; /* Center if content area is larger */
+}
+
+.admin-page-actions .admin-delete-button.danger {
+    background-color: #dc3545; /* Bootstrap danger red */
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+}
+.admin-page-actions .admin-delete-button.danger:hover {
+    background-color: #c82333;
+}
+.admin-page-actions .admin-delete-button.danger:disabled {
+    background-color: #f8d7da;
+    color: #721c24;
+    cursor: not-allowed;
+}
+
+.admin-pagination-controls {
+    margin-top: 20px;
+    text-align: center;
+}
+.admin-pagination-controls button {
+    background-color: var(--bkash-dark-green);
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    margin: 0 5px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.admin-pagination-controls button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+.admin-pagination-controls span {
+    margin: 0 10px;
+    font-size: 14px;
+}
+
+/* Ensure table cells can wrap text if From/To is long */
+.admin-table td {
+    word-break: break-word; /* Or break-all if needed */
+}
+
+.admin-transactions-history-page .admin-list-container {
+    flex-grow: 1; /* Allow it to take available vertical space from parent */
+    display: flex; /* Use flex to make table-wrapper fill height */
+    flex-direction: column;
+    max-height: 60vh; /* Or any fixed height like 500px, 600px */
+                      /* vh unit is relative to viewport height, good for responsiveness */
+    /* If using flex:1 on this container as before, max-height will constrain it */
+    /* background-color: white; /* Ensure it has a background */
+    /* border-radius: 8px; /* Ensure it has radius */
+    /* box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Ensure it has shadow */
+    /* padding: 20px; /* Ensure it has padding */
+    /* The above properties should already be on .admin-list-container */
+}
+
+.admin-transactions-history-page .admin-list-container .admin-table-wrapper {
+    flex-grow: 1; /* Allow table wrapper to fill the constrained height of its parent */
+    overflow-y: auto; /* THIS ENABLES THE VERTICAL SCROLLBAR when content exceeds height */
+    /* The table itself will grow as tall as its content */
+}
+
+.summary-card .pending-badge {
+    font-size: 11px;
+    background-color: #fef9c3; /* Light yellow */
+    color: #713f12; /* Dark yellow/brown text */
+    padding: 2px 6px;
+    border-radius: 10px;
+    margin-bottom: 8px; /* Space between badge and title */
+    display: inline-block; /* So it doesn't take full width */
+}
+
+/* Specific button styles if needed for these pages */
+.action-btn.disburse-btn { color: #16a34a; /* Darker green for disburse */ }
+.action-btn.disburse-btn:hover { color: #15803d; }
+.admin-action-button.disburse { background-color: #16a34a; }
+.admin-action-button.disburse:hover { background-color: #15803d; }
+
+.action-btn.process-payout-btn { color: var(--agent-primary-blue); } /* Example: blue */
+.admin-action-button.process-payout { background-color: var(--agent-primary-blue); }
+
+/* Styles for loan/investment item cards and repayment form (if you create separate components later) */
+.loan-item-card, .investment-item-card { /* These were from user pages, adapt for admin if needed */
+    /* ... */
+}
+.repayment-form-card { /* ... */ }
+.repayment-actions { /* ... */ }
+
+/* Status badges for loan/investment */
+.status-badge.status-disbursed { background-color: #cffafe; color: #0e7490; }
+.status-badge.status-repaying { background-color: #e0e7ff; color: #3730a3; }
+.status-badge.status-repaid { background-color: #dcfce7; color: #166534; }
+.status-badge.status-matured { background-color: #e0e7ff; color: #3730a3; }
+.status-badge.status-payout_pending { background-color: #fffbeb; color: #b45309; }
+.status-badge.status-withdrawn { background-color: #f3f4f6; color: #4b5563; }

@@ -1,0 +1,1703 @@
+/* client/src/index.css */
+body {
+  margin: 0;
+  font-family: "Hind Siliguri", sans-serif;
+   color: #333;
+   line-height: 1.6;
+   min-height: 100vh; /* Full height */
+   display: flex; /* Flexbox for centering */
+   flex-direction: column; /* Column layout */
+   justify-content: center; /* Center vertically */
+   align-items: center;
+   
+
+}
+
+span{
+    font-family: "Hind Siliguri", sans-serif;
+}
+
+/* Basic container for app content */
+.app-container {
+    max-width: 400px; /* Simulate mobile width */
+    margin: 0 auto; /* Center the container */
+    padding: 20px;
+    border-radius: 8px;
+}
+
+/* Main Application Root Container */
+.app-root-container {
+    width: 100%;
+    display: flex; /* Allow inner div to grow */
+    flex-direction: column; /* Allow inner div to grow */
+    transition: all 0.3s ease-out; /* Smooth transitions for potential size changes */
+}
+
+.app-root-container > div {
+    height: 100%; /* Tries to fill .app-root-container */
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    overflow-y: auto; /* <<<<<<< ADD THIS TO ALLOW CONTENT SCROLLING INSIDE THE FRAME */
+    width: 100%; /* Ensure it takes full width of parent */
+}
+
+
+/* Styles for Mobile View (User/Agent) */
+.app-root-container.mobile-view {
+    width: 400px; /* Simulate mobile width */
+    min-height: 600px;
+    max-height: 90vh; /* Or a fixed height like 700px */
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    margin: auto; /* Center if body is not using flex for centering this element */
+}
+.app-root-container.mobile-view.user-theme {
+    background-color: white; /* Default inner BG for user pages */
+}
+.app-root-container.mobile-view.agent-theme {
+    background-color: white; /* Default inner BG for agent pages */
+}
+
+/* Styles for Admin View (Wider Layout) */
+
+
+.app-root-container.admin-view-fullscreen {
+    /* Styles for the fullscreen admin container from previous step */
+    max-width: none; width: 100%; height: 727px;
+    border-radius: 0; box-shadow: none; border: none; margin: 0;
+}
+
+
+
+/* Simple form styling */
+form div {
+    margin-bottom: 15px;
+}
+
+form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+form input[type="text"],
+form input[type="password"],
+form input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    
+}
+
+form button {
+    background-color: var(--bkash-dark-green); /* Bkash Pink */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    transition: 0.2s ease;
+}
+
+ form button:hover {
+     background-color: var(--bkash-light-green); /* Slightly darker pink on hover */
+ }
+
+ /* Basic Link styling */
+ a {
+     color: #557c23;
+     text-decoration: none;
+ }
+
+
+.welcome-container {
+    display: flex; /* Use flexbox for vertical layout */
+    flex-direction: column;
+    /*min-height: calc(100vh - 40px);  Full height minus margin */
+    max-width: 800px; /* Keep mobile width constraint */
+    border-radius: 10px; /* More rounded corners for the frame */
+    overflow: hidden; /* Hide content overflow from rounded corners */
+    background-color: var(--bkash-dark-green); /* Background for the border area */
+    box-sizing: border-box; /* Include padding and border in element's total width */
+    padding: 0; /* Remove default padding */
+}
+
+/* Define the specific green colors based on the image */
+:root {
+  --bkash-pink: #e2136e; /* Keep existing */
+  --bkash-orange: #f15a24; /* Keep existing */
+  --bkash-light-gray: #f8f8f8; /* Keep existing */
+  --bkash-dark-gray: #333; /* Keep existing */
+
+  /* New green colors from the image */
+  --bkash-dark-green: #2E3D24; /* Approximate deep green */
+  --bkash-light-green: #A2E772; /* Approximate lighter green */
+  --app-logo: 100px;
+
+  --agent-primary-blue: #3f51b5; /* Example primary blue from screenshots */
+  --agent-dark-blue: #303f9f;
+  --agent-dark-blue2: #171F3A;
+  --agent-light-blue-bg: #e8eaf6; /* Light blue for backgrounds */
+  --agent-text-on-dark: #ffffff;
+  --agent-text-on-light: #3f51b5;
+}
+
+
+/* Top section - light green background */
+.welcome-top {
+    background-color: var(--bkash-light-green);
+    padding: 40px 20px 30px 20px; /* Top, Right, Bottom, Left padding */
+    text-align: center; /* Center contents horizontally */
+    position: relative; /* For positioning prototype text */
+    flex-grow: 1; /* Allow this section to grow and take available space */
+    display: flex; /* Use flex for vertical centering/layout within top */
+    flex-direction: column;
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
+}
+
+/* Prototype text */
+.prototype-text {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    font-size: 10px;
+    color: rgba(0, 0, 0, 0.6); /* Slightly transparent dark text */
+    text-align: left;
+    line-height: 1.2;
+}
+
+/* Logo */
+.welcome-logo {
+    width: var(--app-logo); /* Adjust size as needed */
+    height: auto;
+    margin-bottom: 15px; /* Space below logo */
+}
+
+/* Welcome Heading */
+.welcome-heading {
+    font-size: 36px; /* Large font size */
+    color: var(--bkash-dark-green); /* Dark green text */
+    margin: 0 0 10px 0; /* Space below heading */
+    font-weight: bold; /* Make it bold */
+}
+
+/* Welcome Subheading */
+.welcome-subheading {
+    font-size: 18px;
+    color: var(--bkash-dark-green); /* Dark green text */
+    margin: 0;
+    line-height: 1.5;
+}
+
+
+/* Bottom section - white background */
+.welcome-bottom {
+    background-color: white;
+    text-align: center; /* Center contents horizontally */
+    padding: 35px 0;
+    margin-top: 0px; /* Overlap slightly with top section */
+    position: relative; /* To handle the overlap */
+    z-index: 1; /* Ensure it's above the top section */
+}
+
+/* Call to action text */
+.welcome-cta {
+    font-size: 16px;
+    color: var(--bkash-dark-gray);
+    margin: 0 0 25px 0; /* Space below text */
+    line-height: 1.5;
+}
+
+/* Button styles (reusing .welcome-button with modifiers) */
+.welcome-button {
+    display: block;
+    width: 60%; /* Full width */
+    margin: 0 auto 5px auto; /* Center the button */
+    padding: 10px; /* Padding for button */
+    border-radius: 25px;
+    font-weight: bold;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    
+}
+
+/* Primary Button (Login) */
+.welcome-button.primary-button {
+    background-color: var(--bkash-light-green); /* Light green filled */
+    color: var(--bkash-dark-green); /* Dark green text */
+    border: 2px solid var(--bkash-light-green); /* Border matches background */
+    text-decoration: none;
+}
+.welcome-button.primary-button:hover {
+     background-color: #8bc757; /* Slightly darker green on hover */
+     border-color: #8bc757;
+     text-decoration: none;
+}
+
+
+/* Secondary Button (Registration) */
+.welcome-button.secondary-button {
+    background-color: transparent; /* Transparent background */
+    color: var(--bkash-dark-green); /* Dark green text */
+    border: 2px solid var(--bkash-dark-green); /* Dark green border */
+    text-decoration: none;
+}
+.welcome-button.secondary-button:hover {
+     background-color: rgba(46, 74, 58, 0.1); /* Slight dark green background on hover */
+     text-decoration: none;
+}
+
+/* User Login Page Layout */
+.login-page-layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%; /* Ensure it tries to fill its parent's height */
+                       /* (its parent is the div inside .app-root-container) */
+    background-color: white; /* White background for the login area */
+    padding: 0;
+    border-radius: 20px; /* Should match app-root-container's radius if it's the direct content */
+    overflow: hidden; /* To respect the border-radius with the bottom bar */
+    flex-grow: 1; /* Added: Allow this layout to grow within its flex parent */
+}
+
+.login-top-section {
+    flex-grow: 1; /* CRUCIAL: Make this section take available vertical space */
+    padding: 30px 20px;
+    text-align: center;
+    position: relative;
+    display: flex; /* Optional: for centering content within top section */
+    flex-direction: column; /* Optional: for centering content within top section */
+    justify-content: center; /* Optional: for centering content within top section */
+}
+
+.login-bottom-section {
+    padding: 20px;
+    background-color: var(--bkash-light-green);
+    text-align: center;
+    border-bottom-left-radius: 20px; /* Inherit from .login-page-layout if it has rounded corners */
+    border-bottom-right-radius: 20px;
+    /* No margin-top: -15px; here if the visual design doesn't need an overlap with a white top section.
+       If the .login-top-section IS white and this should overlap, then the margin-top is fine.
+       Based on your screenshot, .login-top-section is white, so the overlap is intended.
+    */
+    margin-top: -15px; /* This creates the overlap with the white top section */
+    position: relative; /* For z-index if needed, and for the margin-top overlap */
+    z-index: 1; /* To ensure it sits on top if overlapping */
+    flex-shrink: 0; /* Prevent this section from shrinking */
+}
+
+
+.login-logo {
+    width: var(--app-logo); /* Adjust logo size */
+    height: auto;
+    margin-bottom: 5px;
+}
+
+.login-heading {
+    font-size: 24px; /* Adjust heading size */
+    color: var(--bkash-dark-green);
+    margin: 0 0 20px 0;
+    line-height: 1.4;
+}
+
+.logged-in-number {
+    font-size: 18px;
+    color: var(--bkash-dark-gray);
+    margin: -10px 0 20px 0; /* Adjust margin if needed */
+}
+
+/* Style for the combined mobile input group (+88 and input) */
+.mobile-input-group {
+    display: flex;
+    align-items: center;
+    
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.country-code {
+    font-size: 16px;
+    color: var(--bkash-dark-gray);
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.mobile-field {
+    flex-grow: 1; /* Allow input field to take up remaining space */
+    border: none; /* Remove input's default border */
+    padding: 0; /* Remove input's default padding */
+    font-size: 16px;
+    outline: none; /* Remove outline on focus if desired */
+}
+
+/* Style for the PIN input */
+.pin-input {
+     width: 100%; /* Take full width of its container */
+     padding: 10px;
+     border: 1px solid #ddd;
+     border-radius: 4px;
+     box-sizing: border-box;
+     font-size: 18px; /* Slightly larger font for PIN dots */
+     text-align: center; /* Center the PIN dots */
+     /* You might need font-family or specific character spacing to make dots look right */
+     /* letter-spacing: 5px; Try adjusting letter spacing */
+}
+
+
+/* Navigation button (Next/Login) style in the bottom section */
+.login-next-button {
+    display: flex; /* Use flexbox to center text and arrow */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    width: calc(100% - 40px); /* Full width minus padding of parent */
+    padding: 12px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 30px; /* Highly rounded */
+    background-color: white; /* White background */
+    color: var(--bkash-dark-green); /* Dark green text */
+    border: none; /* No border */
+    cursor: pointer;
+    margin: 0 auto; /* Center the button itself if its width is less than 100% */
+    transition: background-color 0.2s ease;
+}
+.login-next-button:hover {
+    background-color: #eee; /* Slight gray background on hover */
+}
+
+.button-arrow {
+    margin-left: 10px; /* Space between text and arrow */
+    font-size: 20px; /* Size of the arrow */
+}
+
+/* Back Button */
+.back-button {
+    position: absolute;
+    top: 2px; /* Adjust position as needed */
+    left: 5px; /* Adjust position as needed */
+    background: none;
+    border: none;
+    color: var(--bkash-light-green);
+    cursor: pointer;
+    font-weight: bold;
+    padding: 5px; /* Increase clickable area */
+    font-size: 35px;
+    transition: opacity 0.2s ease;
+}
+.back-button:hover {
+     opacity: 0.8;
+}
+
+
+/* Utility class for visually hidden elements */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* --- Registration Page Specific Styles --- */
+.register-page-layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%; /* Ensure it tries to fill its parent's height */
+                       /* (its parent is the div inside .app-root-container) */
+    background-color: white; /* White background for the login area */
+    padding: 0;
+    border-radius: 20px; /* Should match app-root-container's radius if it's the direct content */
+    overflow: hidden; /* To respect the border-radius with the bottom bar */
+    flex-grow: 1; /* Added: Allow this layout to grow within its flex parent */
+}
+
+.register-top-section {
+    flex-grow: 1; /* CRUCIAL: Make this section take available vertical space */
+    padding: 30px 20px;
+    text-align: center;
+    position: relative;
+    display: flex; /* Optional: for centering content within top section */
+    flex-direction: column; /* Optional: for centering content within top section */
+    justify-content: center; /* Optional: for centering content within top section */
+}
+
+ /* Reuse the same bottom section style as login page */
+.register-bottom-section {
+    padding: 20px;
+    background-color: var(--bkash-light-green);
+    text-align: center;
+    border-bottom-left-radius: inherit; /* Inherit from .login-page-layout if it has rounded corners */
+    border-bottom-right-radius: inherit;
+    /* No margin-top: -15px; here if the visual design doesn't need an overlap with a white top section.
+       If the .login-top-section IS white and this should overlap, then the margin-top is fine.
+       Based on your screenshot, .login-top-section is white, so the overlap is intended.
+    */
+    margin-top: -15px; /* This creates the overlap with the white top section */
+    position: relative; /* For z-index if needed, and for the margin-top overlap */
+    z-index: 1; /* To ensure it sits on top if overlapping */
+    flex-shrink: 0; /* Prevent this section from shrinking */
+}
+
+.register-logo { /* Reuse login-logo style? Or specific size? */
+     width: var(--app-logo); /* Adjust logo size */
+     height: auto;
+
+}
+
+ /* Style for the combined mobile input group (+88 and input) - Reuse login style */
+.mobile-input-group {
+    display: flex;
+    align-items: center;
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+ .country-code { /* Reuse style */
+     font-size: 16px;
+     color: var(--bkash-dark-gray);
+     margin-right: 10px;
+     font-weight: bold;
+ }
+ .mobile-field { /* Reuse style */
+     flex-grow: 1;
+     border: none;
+     padding: 0;
+     font-size: 16px;
+     outline: none;
+ }
+
+
+/* Heading/Subheading styles for steps */
+.step-subheading {
+     font-size: 18px;
+     color: var(--bkash-dark-green);
+     margin: 0 0 20px 0;
+     line-height: 1.4;
+}
+.step-instruction {
+    font-size: 14px;
+    color: var(--bkash-dark-gray);
+    margin: -10px 0 20px 0; /* Adjust margin */
+    line-height: 1.4;
+}
+
+
+/* OTP input group (input + resend icon) */
+.otp-input-group {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center the input box */
+    margin-bottom: 20px;
+}
+
+.otp-input {
+    width: 130px; /* Fixed width for 4 digits */
+    padding: 10px;
+    border: 1px solid var(--bkash-light-green); /* Light green border for focus */
+    border-radius: 4px;
+    font-size: 24px; /* Larger font */
+    text-align: center; /* Center text */
+    letter-spacing: 5px; /* Space out digits */
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+.otp-input:focus {
+    border-color: var(--bkash-dark-green); /* Darker border on focus */
+}
+
+.resend-otp-button {
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: var(--bkash-light-green); /* Use a green color for resend */
+    cursor: pointer;
+    margin-left: 10px;
+    padding: 5px;
+    transition: color 0.2s ease;
+}
+.resend-otp-button:hover:not(:disabled) {
+    color: var(--bkash-dark-green);
+}
+ .resend-otp-button:disabled {
+     opacity: 0.5;
+     cursor: not-allowed;
+ }
+
+
+/* PIN set input group (single input field) - Reuse login pin-input style */
+.pin-set-input-group {
+     margin-bottom: 15px; /* Space between pin inputs */
+}
+ .pin-set-input-group .pin-input {
+     /* Reuse .pin-input style from login page */
+     width: 100%;
+     padding: 10px;
+     border: 1px solid #ddd;
+     border-radius: 4px;
+     box-sizing: border-box;
+     font-size: 18px;
+     text-align: center;
+     letter-spacing: 5px; /* Space out dots */
+ }
+
+/* Reuse the next button style from login page */
+ .register-next-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: calc(100% - 0px); /* Adjust width calculation if needed */
+    padding: 12px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 30px;
+    background-color: white;
+    color: var(--bkash-dark-green);
+    border: none;
+    cursor: pointer;
+    /* margin: 0 auto; */ /* No auto margin if width is 100% */
+    transition: background-color 0.2s ease;
+ }
+  .register-next-button:hover:not(:disabled) {
+     background-color: #eee;
+ }
+  .register-next-button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+  }
+
+
+/* --- Complete Profile Page Specific Styles --- */
+/* Uses a similar layout structure */
+.complete-profile-layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%; /* Occupy full height of main-app-frame */
+    background-color: white; /* White background */
+    padding: 0;
+    flex-grow: 1;
+}
+
+.complete-profile-top-section {
+     flex-grow: 1;
+     padding: 30px 20px;
+     text-align: center;
+     position: relative;
+}
+
+ /* Reuse the same bottom section style */
+.complete-profile-bottom-section {
+    padding: 20px;
+    background-color: var(--bkash-light-green);
+    text-align: center;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    margin-top: -15px;
+    position: relative;
+    z-index: 1;
+}
+
+.profile-logo { /* Reuse login-logo style? */
+     width: 80px; /* Adjust logo size */
+     height: auto;
+     margin-bottom: 20px;
+}
+
+.profile-heading {
+     font-size: 24px;
+     color: var(--bkash-dark-green);
+     margin: 0 0 30px 0; /* More space below heading */
+     line-height: 1.4;
+}
+
+ /* Styling for generic input groups (label + input) */
+.input-group {
+     margin-bottom: 20px; /* Space between input groups */
+     text-align: left; /* Align label/input left */
+}
+ .input-group .input-label {
+     display: block; /* Label on its own line */
+     font-size: 14px;
+     color: var(--bkash-dark-gray);
+     margin-bottom: 5px;
+     font-weight: normal; /* Normal weight for input labels */
+ }
+ .input-group .standard-input {
+     width: 100%;
+     padding: 10px;
+     border: 1px solid #ddd;
+     border-radius: 4px;
+     box-sizing: border-box;
+     font-size: 16px;
+ }
+
+/* Reuse the submit button style */
+.profile-submit-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+     width: calc(100% - 0px); /* Adjust width calculation */
+    padding: 12px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 30px;
+    background-color: white;
+    color: var(--bkash-dark-green);
+    border: none;
+    cursor: pointer;
+     transition: background-color 0.2s ease;
+}
+  .profile-submit-button:hover:not(:disabled) {
+     background-color: #eee;
+ }
+   .profile-submit-button:disabled {
+       opacity: 0.5;
+       cursor: not-allowed;
+   }
+
+
+/* Error/Success message styling */
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 10px;
+}
+.success-message {
+    color: green;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+ /* Visually hidden utility (add if not already there) */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* --- Dashboard Page Specific Styles --- */
+
+.dashboard-layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%; /* Occupy full height of main-app-frame */
+    background-color: #f8f8f8; /* Light gray background for the entire dashboard content area */
+    padding: 0; /* Remove default padding */
+    border-radius: 20px;
+    
+}
+
+
+/* Top Profile Section */
+.dashboard-profile-section {
+    display: flex; /* Use flexbox to align items horizontally */
+    align-items: center; /* Center items vertically */
+    padding: 15px; /* Padding around the profile section */
+    background-color: var(--bkash-light-green); /* Light green background */
+    color: var(--bkash-dark-green); /* Dark green text color */
+    border-radius: 15px; /* Rounded bottom corners */
+    margin: 8px; /* Space below the profile section */
+}
+
+.profile-avatar {
+    width: 50px; /* Size of the avatar circle */
+    height: 50px;
+    background-color: white; /* White circle */
+    border-radius: 50%; /* Make it round */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px; /* Size of the placeholder icon */
+    margin-right: 15px; /* Space between avatar and info */
+     color: var(--bkash-dark-green); /* Dark green icon color */
+}
+
+.profile-info {
+    flex-grow: 1; /* Allow profile info to take up available space */
+    display: flex;
+    flex-direction: column; /* Stack name and balance vertically */
+}
+
+.profile-name {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px; /* Space between name and balance area */
+}
+
+.balance-display-area {
+    display: flex;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.6); /* Semi-transparent white background for balance */
+    border-radius: 20px; /* Rounded pill shape */
+    padding: 5px 10px;
+    font-size: 14px;
+}
+
+.balance-label {
+    font-weight: bold;
+    margin-right: 5px; /* Space between Taka symbol and button */
+}
+
+.toggle-balance-button {
+    background: none;
+    border: none;
+    color: var(--bkash-dark-green); /* Dark green text */
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 0; /* Remove default button padding */
+}
+.toggle-balance-button:hover {
+    text-decoration: underline;
+}
+
+
+.notification-icon {
+    font-size: 24px; /* Size of the notification icon */
+    color: white; /* White icon color */
+    margin-left: 15px; /* Space between info and icon */
+}
+
+
+/* Feature Grid Section */
+.dashboard-features-grid {
+    display: grid;
+    /* Create columns that auto-fit with a minimum width */
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 10px; /* Space between grid items */
+    padding: 0 15px 15px 15px; /* Padding around the grid */
+    background-color: white; /* White background for the grid area */
+    margin-bottom: px; /* Space below the grid */
+}
+
+.feature-item {
+    display: flex;
+    flex-direction: column; /* Stack icon and text vertically */
+    align-items: center; /* Center content horizontally */
+    text-decoration: none; /* Remove underline from Link */
+    color: var(--bkash-dark-gray); /* Default text color */
+    padding: 15px 10px; /* Padding inside each feature item */
+    border: 1px solid #eee; /* Light border */
+    border-radius: 8px; /* Rounded corners */
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+    font-size: 14px; /* Adjust text size */
+}
+ .feature-item:hover {
+    background-color: #f9f9f9; /* Slight background on hover */
+    transform: translateY(-3px);
+ }
+ .feature-item.disabled {
+     opacity: 0.5;
+     cursor: not-allowed;
+     pointer-events: none; /* Disable clicks */
+ }
+
+
+.feature-icon {
+    width: 40px; /* Size of the icon area */
+    height: 40px;
+    border-radius: 50%; /* Example if icons are in circles */
+    margin-bottom: 8px; /* Space between icon and text */
+    /* Add actual icon styling here later */
+    display: flex; justify-content: center; align-items: center; /* Center placeholder content */ 
+}
+
+.feature-icon-size{
+    width: 50px;
+}
+
+.feature-text {
+    text-align: center;
+    line-height: 1.2;
+}
+
+
+/* Promotional Messages Section */
+.dashboard-promo-section {
+    padding: 20px 15px; /* Padding around the promo section */
+    background-color: var(--bkash-light-green); /* Light green background */
+    text-align: center;
+    margin: 0 15px 5px 15px; /* Margin to match grid width and space below */
+    border-radius: 8px; /* Rounded corners */
+    color: var(--bkash-dark-green); /* Text color */
+    display: flex; /* Flex for content and dots */
+    flex-direction: column;
+    align-items: center;
+}
+
+ .promo-content {
+     /* Style for promotional message content */
+     font-size: 16px;
+     margin-bottom: 15px;
+ }
+
+ .promo-dots {
+     display: flex;
+     gap: 8px; /* Space between dots */
+ }
+  .dot {
+      width: 8px;
+      height: 8px;
+      background-color: rgba(46, 74, 58, 0.5); /* Semi-transparent dark green */
+      border-radius: 50%;
+  }
+  .dot.active {
+      background-color: var(--bkash-dark-green); /* Solid dark green for active dot */
+  }
+
+
+/* Bottom Navigation Bar Section */
+.dashboard-bottom-nav {
+    display: flex; /* Use flexbox for horizontal layout */
+    justify-content: space-around; /* Distribute items evenly */
+    align-items: center;
+    padding: 10px 0; /* Padding above and below */
+    background-color: white; /* White background */
+    border-top: 1px solid #eee; /* Top border */
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    /* In a real app, this would often be position: fixed; bottom: 0; width: 100%; */
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column; /* Stack icon and text */
+    align-items: center; /* Center content */
+    text-decoration: none;
+    color: var(--bkash-dark-gray); /* Default text color */
+    font-size: 12px; /* Smaller text size */
+    padding: 5px; /* Padding around item */
+    flex-grow: 1; /* Allow items to grow and fill space */
+    text-align: center;
+}
+.nav-item.active {
+    color: #45c61a; /* Pink for active item (Home) */
+}
+
+.nav-icon {
+    font-size: 24px; /* Size of the icon */
+    margin-bottom: 3px; /* Space between icon and text */
+}
+
+.nav-icon img{
+    width: 32px; /* Size of the icon */
+}
+
+ /* Style for the logout button in the nav */
+.nav-item.logout-button {
+    /* Override button default styles if needed */
+    color: var(--bkash-dark-gray); /* Same color as other nav items */
+}
+ .nav-item.logout-button:hover {
+     color: var(--bkash-light-green); /* Change color on hover */
+ }
+
+
+
+
+ /* Add Money styles */
+ /* --- Generic Feature Page Layout Styles --- */
+.feature-page-layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%; /* Occupy full height of main-app-frame */
+    background-color: white; /* White background for the content area */
+    padding: 0; /* Remove padding from this wrapper, handle in sections */
+    flex-grow: 1;
+}
+
+.feature-page-top-section {
+    display: flex; /* Align items in the header */
+    align-items: center; /* Vertically center items */
+    padding: 15px 20px; /* Padding for the header */
+    border-bottom: 1px solid #eee; /* Separator line */
+    position: relative; /* For back button absolute positioning if needed, or flex alignment */
+}
+
+/* Back button can reuse existing .back-button style if suitable */
+/* .back-button { ... } */
+
+/* User Theme Specifics for feature pages */
+.feature-page-layout.user-theme-bg {
+    /* If the default white from .feature-page-layout needs to be overridden for user pages */
+    /* background-color: white; /* Is often the default already */
+}
+.feature-page-top-section.user-theme-header {
+    /* background-color: var(--bkash-light-green); */ /* Example if header needs different bg */
+    /* color: var(--bkash-dark-green); */
+}
+.back-button.user-theme-back {
+    color: var(--bkash-dark-green); /* Or white if header is dark green */
+}
+.feature-page-heading.user-theme-heading {
+    color: var(--bkash-dark-green);
+}
+.feature-page-bottom-section.user-theme-footer {
+    background-color: var(--bkash-light-green); /* Green footer for buttons */
+}
+.feature-page-next-button.user-theme-button {
+    background-color: white; /* White button on green footer */
+    color: var(--bkash-dark-green);
+}
+.feature-page-next-button.user-theme-button:hover:not(:disabled) {
+    background-color: #f0f0f0; /* Slightly off-white hover */
+}
+.feature-page-next-button.user-theme-button .button-arrow.user-theme-arrow {
+    color: var(--bkash-dark-green);
+}
+
+.feature-page-logo {
+    width: 80px; /* Smaller logo for inner pages */
+    height: auto;
+    margin-left: 35px; /* Space after back button */
+    margin-right: auto; /* Push heading to the right or center it */
+}
+
+.feature-page-heading {
+    font-size: 20px; /* Standard heading size for feature pages */
+    color: var(--bkash-dark-green);
+    text-align: center; /* Center heading text */
+    flex-grow: 1; /* Allow heading to take space and center */
+    margin: 0; /* Remove default margins */
+    /* If logo pushes it too far, adjust margins or use absolute positioning */
+    margin-right: 80px;
+}
+
+/* Main content area for forms or specific feature UI */
+.feature-page-content {
+    flex-grow: 1; /* Allow content to fill available vertical space */
+    padding: 20px;
+    background-color: white; /* Usually white, but can be overridden */
+}
+
+/* Reusable input group style (label + input) */
+.input-group { /* Already defined, ensure it's suitable or make specific */
+     margin-bottom: 20px;
+     text-align: left;
+}
+ .input-group label { /* Already defined */
+     display: block;
+     font-size: 14px;
+     color: var(--bkash-dark-gray);
+     margin-bottom: 8px;
+     font-weight: normal;
+ }
+ .standard-input { /* Already defined for profile page, can reuse */
+     width: 100%;
+     padding: 12px; /* Slightly more padding */
+     border: 1px solid #ccc; /* Slightly darker border for inputs */
+     border-radius: 4px;
+     box-sizing: border-box;
+     font-size: 16px;
+ }
+ .standard-input:focus {
+     border-color: var(--bkash-pink); /* Highlight with pink on focus */
+     outline: none;
+     box-shadow: 0 0 0 2px rgba(226, 19, 110, 0.2); /* Optional focus ring */
+ }
+
+/* Available balance display */
+.available-balance {
+    font-size: 14px;
+    color: var(--bkash-dark-gray);
+    text-align: right;
+    margin-top: -10px; /* Pull it up slightly */
+    margin-bottom: 20px;
+}
+
+/* Bottom section for the main action button */
+.feature-page-bottom-section {
+    padding: 20px;
+    background-color: #f8f8f8; /* Light gray background for button area */
+    border-top: 1px solid #eee;
+    margin-top: auto; /* Push to the bottom if content is short */
+}
+
+.feature-page-next-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* Full width button */
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 4px; /* Standard button radius */
+    background-color: var(--bkash-light-green); /* Primary action color */
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+.feature-page-next-button:hover:not(:disabled) {
+    background-color: var(--bkash-dark-green); /* Darker pink */
+}
+.feature-page-next-button:disabled {
+    background-color: var(--bkash-light-green); /* Lighter disabled pink */
+    cursor: not-allowed;
+}
+.feature-page-next-button .button-arrow { /* Reusing button-arrow if needed */
+    margin-left: 10px;
+    font-size: 18px;
+}
+
+
+/* SEND MONEY */
+/* --- Send Money Page Specific Styles --- */
+.send-money-layout .feature-page-content {
+    padding-top: 10px; /* Reduce top padding if header is already spacious */
+}
+
+.input-label { /* For labels like "নাম বা নাম্বার দিন", "রেফারেন্স" */
+    display: block;
+    font-size: 14px;
+    color: var(--bkash-dark-gray);
+    margin-bottom: 8px;
+    text-align: left;
+}
+
+.contact-list-header {
+    font-size: 14px;
+    color: var(--bkash-dark-gray);
+    text-align: left;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.contact-list {
+    max-height: 200px; /* Or adjust based on screen */
+    overflow-y: auto;
+    border: 1px solid #eee;
+    border-radius: 4px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #f0f0f0;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+.contact-item:last-child {
+    border-bottom: none;
+}
+.contact-item:hover {
+    background-color: #f0f0f0; /* Lighter hover for non-selected items */
+}
+.contact-item.selected {
+    background-color: #eef7e6; /* Light green highlight for the display box */
+    border: 1px solid var(--bkash-light-green); /* Add a border to the display box */
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+.contact-item.selected.small { /* For smaller display on confirm/success */
+    padding: 8px;
+    font-size: 14px;
+}
+.contact-item.selected.small .contact-avatar {
+    width: 24px;
+    height: 24px;
+    font-size: 14px;
+}
+.contact-item.selected.small .contact-name {
+    font-size: 14px;
+}
+.contact-item.selected.small .contact-number {
+    font-size: 12px;
+}
+
+.contact-item.selected-in-list {
+    background-color: #d4edda; /* A light green for selected, adjust as needed */
+    border-left: 4px solid var(--bkash-light-green); /* Accent border */
+    padding-left: 6px; /* Adjust padding due to border */
+}
+.contact-item.selected-in-list:hover {
+     background-color: #c3e6cb; /* Slightly darker green on hover if selected */
+}
+
+
+
+
+.contact-avatar {
+    width: 30px;
+    height: 30px;
+    background-color: var(--bkash-light-green);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+    color: white; /* Or dark green for icon inside */
+    font-size: 16px; /* Placeholder for initial */
+}
+/* Example: .contact-avatar::before { content: '👤'; } */
+
+.contact-details {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+.contact-name {
+    font-size: 15px;
+    font-weight: bold;
+    color: var(--bkash-dark-gray);
+}
+.contact-number {
+    font-size: 13px;
+    color: #777;
+}
+
+/* Amount Input Area (Step 2) */
+.recipient-display {
+    margin-bottom: 20px;
+    text-align: left;
+}
+.recipient-display .label {
+    font-size: 14px;
+    color: var(--bkash-dark-gray);
+    display: block;
+    margin-bottom: 5px;
+}
+.amount-input-group {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center the amount input */
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px 0; /* Vertical padding only */
+}
+.taka-symbol {
+    font-size: 36px; /* Large Taka symbol */
+    color: var(--bkash-dark-gray);
+    margin-right: 10px;
+    margin-left: 20px;
+    font-weight: bold;
+}
+.amount-input {
+    flex-grow: 1;
+    border: none;
+    padding: 0;
+    font-size: 36px; /* Large font for amount */
+    font-weight: bold;
+    color: var(--bkash-dark-green); /* Pink for amount */
+    text-align: left; /* Align text left within input */
+    width: auto; /* Allow to shrink/grow */
+    min-width: 50px; /* Minimum width */
+    outline: none;
+}
+.amount-input::placeholder {
+    color: #ccc;
+}
+.available-balance.large {
+    font-size: 16px;
+    text-align: center;
+    margin-top: 10px;
+    line-height: 1.3;
+}
+
+/* PIN Input (Step 3) */
+.amount-display { /* For showing entered amount on PIN screen */
+    text-align: center;
+    margin-bottom: 20px;
+}
+.amount-display .label {
+    font-size: 14px;
+    color: var(--bkash-dark-gray);
+    display: block;
+}
+.amount-display .amount-value {
+    font-size: 36px;
+    font-weight: bold;
+    color: var(--bkash-dark-green);
+}
+.pin-input.large-dots { /* Reuse .pin-input with larger dots if needed */
+    font-size: 24px; /* Make dots larger */
+    letter-spacing: 10px; /* More space between dots */
+    padding: 15px;
+    width: 100%;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+}
+
+/* Confirmation Screen (Step 4) */
+.feature-page-heading.centered {
+    text-align: center;
+    width: 100%; /* Take full width for centering */
+    margin-bottom: 20px; /* Space below heading */
+}
+.confirmation-details {
+    background-color: #f9f9f9; /* Light background for details box */
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+.confirmation-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    text-align: left;
+}
+.confirmation-row .label {
+    font-size: 14px;
+    color: var(--bkash-dark-gray);
+    margin-right: 10px;
+}
+.confirmation-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two columns */
+    gap: 15px;
+    text-align: left;
+}
+.grid-item {
+    background-color: white;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #eee;
+}
+.grid-item .label {
+    display: block;
+    font-size: 13px;
+    color: #777;
+    margin-bottom: 3px;
+}
+.grid-item .value {
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--bkash-dark-gray);
+}
+.confirm-instruction {
+    text-align: center;
+    font-size: 16px;
+    color: var(--bkash-dark-gray);
+    margin-top: 25px;
+}
+
+/* Confirm Hold Button */
+.confirm-hold-button {
+    background-color: var(--bkash-light-green) !important; /* Override default */
+    color: var(--bkash-dark-green) !important;
+    position: relative;
+    overflow: hidden; /* For progress bar */
+}
+.confirm-hold-button.holding::before { /* Pseudo-element for progress */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: rgba(46, 74, 58, 0.2); /* Darker green progress */
+    /* Width will be animated or set by JS based on holdTime */
+    transition: width 0.1s linear; /* Smooth progress update */
+}
+.confirm-hold-button:disabled {
+    background-color: #c8e6c9 !important; /* Lighter green when fully held or loading */
+}
+
+
+/* Success Screen (Step 5) */
+.feature-page-heading.success-heading {
+    color: green; /* Green for success */
+}
+.success-message-text {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: green;
+    margin-top: 25px;
+}
+
+/* Global error message style (if not already globally defined) */
+.error-message.global-error {
+    text-align: center;
+    margin-bottom: 15px;
+    color: red;
+}
+
+
+
+/* ADD MONEY */
+/* --- Add Money Page Specific Styles --- */
+.add-money-layout .feature-page-content {
+    padding-top: 15px;
+}
+
+.add-money-method-selection {
+    display: flex;
+    justify-content: space-around; /* Or space-between */
+    gap: 15px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.method-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    cursor: pointer;
+    min-width: 120px; /* Ensure decent size */
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    text-align: center;
+}
+.method-option:hover {
+    border-color: var(--bkash-light-green);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.method-option.selected {
+    border-color: var(--bkash-dark-green); /* Or bkash-pink for selection */
+    background-color: #f0fff0; /* Very light green for selected */
+    box-shadow: 0 0 0 2px var(--bkash-dark-green);
+}
+
+.method-icon {
+    font-size: 40px; /* Placeholder for icon size */
+    margin-bottom: 10px;
+    /* Styles for actual icons would go here */
+}
+.atm-icon { color: #2979ff; } /* Example color for ATM */
+.card-icon { color: #ffc107; } /* Example color for Card */
+
+.method-option span {
+    font-size: 14px;
+    color: var(--bkash-dark-gray);
+    font-weight: 500;
+}
+
+/* Displaying selected method and balance in Step 2 & 3 */
+.add-money-details-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+.add-money-details-grid .grid-item.compact {
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #eee;
+}
+.add-money-details-grid .grid-item.compact .label {
+    font-size: 12px;
+    color: #777;
+    display: block;
+    margin-bottom: 5px;
+}
+.add-money-details-grid .grid-item.compact .value.bold {
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--bkash-dark-green);
+}
+.method-display-icon {
+    font-size: 16px; /* Adjust icon size */
+    font-weight: bold;
+    color: var(--bkash-dark-gray);
+    /* display: flex; align-items: center; justify-content: center; */
+}
+.method-display-icon.large { /* For confirmation/success screens */
+    font-size: 28px;
+    padding: 10px;
+    margin-top: 5px;
+}
+
+
+/* Confirmation Screen Specifics for Add Money */
+.confirmation-details .confirmation-row.single-item {
+    display: flex;
+    flex-direction: column; /* Stack label and icon display */
+    align-items: center;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.confirmation-details .confirmation-row.single-item .label {
+    margin-bottom: 8px;
+}
+.confirmation-grid .grid-item.full-width.new-balance-item {
+    grid-column: 1 / -1; /* Span full width */
+    text-align: center;
+    background-color: var(--bkash-light-green); /* Highlight new balance */
+    padding: 15px;
+}
+.confirmation-grid .grid-item .value.large-value {
+    font-size: 24px; /* Larger font for prominent values */
+    color: var(--bkash-dark-green);
+}
+
+
+/* Ensure .pin-input.large-dots for OTP is styled if not already */
+.pin-input.large-dots { /* Reused from Send Money */
+    font-size: 24px;
+    letter-spacing: 10px;
+    padding: 15px;
+    width: 100%;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+}
+.pin-input.large-dots::placeholder {
+    color: #e0e0e0; /* Lighter placeholder for dots */
+}
+
+/* Ensure error/success messages are visible */
+.feature-page-content .error-message.global-error,
+.feature-page-content .success-message.global-success {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+/* Loan/Investment Item Cards */
+.loan-item-card, .investment-item-card {
+    background-color: #f9f9f9; /* Slightly off-white card */
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+.loan-item-card p, .investment-item-card p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+.loan-item-card strong, .investment-item-card strong {
+    color: var(--bkash-dark-green);
+}
+.status-badge.status-pending { background-color: #fffbeb; color: #b45309; }
+.status-badge.status-approved { background-color: #d1fae5; color: #065f46; }
+.status-badge.status-rejected { background-color: #fee2e2; color: #991b1b; }
+.status-badge.status-disbursed { background-color: #cffafe; color: #0e7490; }
+.status-badge.status-repaying { background-color: #e0e7ff; color: #3730a3; }
+.status-badge.status-repaid { background-color: #dcfce7; color: #166534; }
+.status-badge.status-active { background-color: #dcfce7; color: #166534; } /* For investment */
+.status-badge.status-matured { background-color: #e0e7ff; color: #3730a3; }
+.status-badge.status-payout_pending { background-color: #fffbeb; color: #b45309; }
+.status-badge.status-withdrawn { background-color: #f3f4f6; color: #4b5563; }
+
+
+/* Repayment Button / Withdraw Button */
+.repay-button, .withdraw-button {
+    background-color: var(--bkash-orange); /* Example color */
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    margin-top: 10px;
+    transition: background-color 0.2s ease;
+}
+.repay-button:hover, .withdraw-button:hover {
+    background-color: #e64a19; /* Darker orange */
+}
+.repay-button.user-theme-button-alt, .withdraw-button.user-theme-button-alt {
+    /* Alternative theming if needed */
+    background-color: var(--bkash-dark-green);
+}
+.repay-button.user-theme-button-alt:hover, .withdraw-button.user-theme-button-alt:hover {
+    background-color: #25301c;
+}
+
+
+/* Repayment Form Card */
+.repayment-form-card {
+    background-color: #f0fff0; /* Light green background */
+    border: 1px solid var(--bkash-light-green);
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 20px;
+}
+.repayment-form-card h3 {
+    margin-top: 0;
+    color: var(--bkash-dark-green);
+    text-align: center;
+    margin-bottom: 15px;
+}
+.repayment-actions {
+    display: flex;
+    justify-content: space-between; /* Or flex-end */
+    gap: 10px;
+    margin-top: 15px;
+}
+.repayment-actions .feature-page-next-button,
+.repayment-actions .cancel-button {
+    flex-grow: 1; /* Make buttons take equal space or adjust */
+}
+.cancel-button.user-theme-button-outline {
+    background-color: transparent;
+    color: var(--bkash-dark-green);
+    border: 1px solid var(--bkash-dark-green);
+}
+.cancel-button.user-theme-button-outline:hover {
+    background-color: rgba(46, 61, 36, 0.1);
+}
+
+/* Select input for investment type */
+select.standard-input {
+    /* Standard input styles should mostly apply, ensure appearance is good */
+    /* appearance: none; /* If you want to custom style dropdown arrow */
+    /* background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007bff%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.4-12.8z%22%2F%3E%3C%2Fsvg%3E'); */
+    /* background-repeat: no-repeat; */
+    /* background-position: right .7em top 50%; */
+    /* background-size: .65em auto; */
+    padding-right: 2em; /* Make space for arrow */
+}
+
+
+.pay-bill-page .feature-page-content {
+    /* padding adjustments if needed */
+}
+
+.biller-category-selector {
+    display: flex;
+    justify-content: space-around; /* Or space-between */
+    margin-bottom: 20px;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+.category-btn {
+    background-color: transparent;
+    border: 1px solid transparent; /* For consistent sizing */
+    border-radius: 8px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 12px;
+    color: var(--bkash-dark-gray);
+    cursor: pointer;
+    min-width: 70px; /* Ensure buttons have some width */
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+.category-btn:hover {
+    background-color: #f0f0f0;
+}
+.category-btn.active {
+    background-color: var(--bkash-light-green); /* User theme accent */
+    color: var(--bkash-dark-green);
+    font-weight: bold;
+    border-color: var(--bkash-dark-green);
+}
+.cat-icon {
+    font-size: 28px; /* Icon size */
+    margin-bottom: 5px;
+}
+
+/* Biller list items can reuse .contact-item styles or have specific ones */
+.biller-list .contact-item {
+    /* ... */
+}
+.biller-list .contact-item .contact-avatar { /* For biller specific icon/placeholder */
+    background-color: #e9e9e9; /* Neutral placeholder */
+    /* You can add specific icons here using ::before or background images */
+}
+
+/* Amount input for Pay Bill (might be same as other amount inputs) */
+.pay-bill-page .amount-input-group .taka-symbol { /* ... */ }
+.pay-bill-page .amount-input { /* ... */ }
+
+/* Confirmation screen for Pay Bill */
+.pay-bill-page .confirmation-details { /* Reuse general confirmation styles */
+    /* ... */
+}
+
+.statement-page .feature-page-content {
+    padding-top: 10px; /* Less top padding if header is present */
+}
+
+.statement-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.statement-item {
+    padding: 12px 0;
+    border-bottom: 1px solid #eee; /* Separator for items */
+}
+.statement-item:last-child {
+    border-bottom: none;
+}
+
+.statement-item-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* Align items to the top if narration is multi-line */
+    margin-bottom: 4px;
+}
+
+.statement-narration {
+    font-size: 15px; /* Main text size */
+    color: var(--bkash-dark-gray);
+    font-weight: 500; /* Semi-bold for narration */
+    flex-grow: 1;
+    margin-right: 10px; /* Space before amount */
+    line-height: 1.4;
+}
+
+.statement-amount {
+    font-size: 15px;
+    font-weight: bold; /* Bold amount */
+    white-space: nowrap; /* Prevent amount from wrapping */
+}
+
+.statement-item-sub {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px; /* Smaller text for date and balance */
+    color: #777;
+}
+.statement-date {}
+.statement-balance {}
+
+.statement-item-fee {
+    font-size: 11px;
+    color: #888;
+    text-align: right; /* Align fee to the right */
+    margin-top: 2px;
+}
+
+/* Reusing admin pagination style for user statement if desired */
+/* Ensure .admin-pagination-controls and its button styles are themed for user if needed */
+.admin-pagination-controls button { /* If reused */
+    background-color: var(--bkash-light-green); /* User theme button */
+    color: var(--bkash-dark-green);
+}
+.admin-pagination-controls button:disabled {
+    background-color: #e0e0e0;
+    color: #aaa;
+}
+.admin-pagination-controls span {
+    color: var(--bkash-dark-gray);
+}
+
