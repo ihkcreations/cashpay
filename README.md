@@ -27,7 +27,6 @@ This repository contains the source code for CashPay, a prototype mobile financi
 7.  [API Endpoints (Overview)](#7-api-endpoints-overview)
 8.  [Deployment](#8-deployment)
 9.  [Future Enhancements](#9-future-enhancements)
-10. [Author(s)](#10-authors)
 
 ---
 
@@ -162,5 +161,3 @@ The application is designed for deployment with:
 * Two-Factor Authentication.
 * Full implementation of Loan/Investment lifecycle (e.g., interest calculation, automated payouts).
 * User notifications system.
-
-## 10. Author(s)
