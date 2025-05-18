@@ -1,3 +1,12 @@
+## Contributors
+| Name                                 | Student ID            | 
+| ------------------                   | ----------            |
+| Md. Iftekhar Hossain Khan            | 2020-3-60-073         |
+| Arun Jyoti Mondal                    | 2020-3-60-064         |
+| Md. Sakibur Rahman                   | 2021-3-60-057         |
+| Md. Tanvir Hasan Misu                | 2020-2-60-204         |
+
+
 # **About Cashpay Repository:**  <br>
 This repository contains the source code for CashPay, a prototype mobile financial service application developed using the MERN stack (MongoDB, Express.js, React, Node.js). It simulates core functionalities found in services like Bkash, including user accounts, agent operations, merchant payments, and a comprehensive admin panel for system management. This project was created for a university-level software development course (CSE412, Software Engineering, East West University).
 
